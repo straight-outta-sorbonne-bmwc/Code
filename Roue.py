@@ -6,7 +6,7 @@ Created on Thu Jan 31 08:36:59 2019
 @author:  3670527
 """
 
-class Roue(Robot):
+class Roue:
     def __init__(self):
         self.orientationRoue=[0,0]
         
