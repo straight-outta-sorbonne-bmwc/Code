@@ -15,6 +15,3 @@ class Arene:
             v=random.randint(0,9)
             self.Matrice[u][v]=1
     
-
-arene = Arene()
-print(arene.Matrice)
