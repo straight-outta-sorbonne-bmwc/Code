@@ -1,6 +1,7 @@
 class AffichageTK(Objet):
 	dim = 500										# variable globale qui correspond à la dimension de la fenêtre
-	def __init__(self):
+	def __init__(self, arene):
+		self.arene=arene
 		self.root = Tk()							# root variable contenant la fenêtre
 		self.root.title('Tuto')						# Nom de la fenêtre	
 		self.can = Canvas(self.root, width=self.dim, height=self.dim, bg='white')			# création de la fenêtre 
