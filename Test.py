@@ -1,2 +1,6 @@
+import Arene
 class Test:
-    carre=Arene()print(carre.Matrice)
+    carre=Arene.Arene(10)
+    #print(carre.Matrice)
+    carre.ajouterObstacleAleatoire()
+    print(carre.Matrice)    
