@@ -8,8 +8,8 @@ Created on Thu Jan 31 09:23:51 2019
 import numpy as np
 import random
 class Arene:
-    def __init__(self):
-        self.Matrice=np.zeros((10,10))
+    def __init__(self,taille):
+        self.Matrice=np.zeros((taille,taille))
     
     def ajouterObstacleAleatoire():
         for i in range(15):
