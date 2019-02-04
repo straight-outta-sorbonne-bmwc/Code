@@ -1,5 +1,5 @@
 class Robot:
     def __init__(self,x,y):
-        self.x=0
-        self.y=0
+        self.x=x
+        self.y=y
         self.nb_roues=3
