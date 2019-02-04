@@ -1,10 +1,3 @@
-#!/usr/bin/env python3
-# -*- coding: utf-8 -*-
-"""
-Created on Thu Jan 31 09:23:51 2019
-
-@author:  3670527
-"""
 import numpy as np
 import random
 class Arene:
