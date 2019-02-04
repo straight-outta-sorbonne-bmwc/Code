@@ -7,6 +7,6 @@ class Arene:
     
     def ajouterObstacleAleatoire(self):
         for i in range(15):
-            u=random.randint(0,self.taille)
-            v=random.randint(0,self.taille)
+            u=random.randint(0,self.taille-1)
+            v=random.randint(0,self.taille-1)
             self.Matrice[u][v]=1
