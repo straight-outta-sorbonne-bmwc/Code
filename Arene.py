@@ -5,7 +5,7 @@ class Arene:
         self.taille=taille
         self.Matrice=np.zeros((taille,taille))
     
-    def ajouterObstacleAleatoire():
+    def ajouterObstacleAleatoire(self):
         for i in range(15):
             u=random.randint(0,self.taille)
             v=random.randint(0,self.taille)
