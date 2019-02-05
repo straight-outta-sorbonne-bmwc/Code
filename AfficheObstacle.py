@@ -23,8 +23,8 @@ k=0
 """----------------"""
 
 def coordObstacle(arene): #On récupére les coordonnées des obstacle
-    for i in range(dim):
-        for j in range(dim):
+    for i in range(arene.taille):
+        for j in range(arene.taille):
             if(arene.Matrice[i][j]==1):
                 tabx.append(j)
                 taby.append(i)
