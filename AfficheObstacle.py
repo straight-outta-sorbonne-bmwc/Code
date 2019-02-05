@@ -22,7 +22,7 @@ taby=[]
 k=0
 """----------------"""
 
-def verif(arene):
+def coordObstacle(arene): #On récupére les coordonnées des obstacle
     for i in range(dim):
         for j in range(dim):
             if(arene.Matrice[i][j]==1):
@@ -39,7 +39,7 @@ def afficheObstacle():
 arene=Arene.Arene(dim)
 arene.ajouterObstacleAleatoire()
 print(arene.Matrice)
-verif(arene)
+coordObstacle(arene)
 #---------------------------------
 
 #On crée le bouton obstacle
