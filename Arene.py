@@ -1,20 +1,26 @@
 import numpy as np
 import random
 class Arene:
-    def __init__(self,taille):
+    def __init__(self,taille, robot):
         if(type(taille)==int):
             if(taille>0 and taille<=50):    
                 self.taille=taille
+                self.robot=robot
                 self.Matrice=np.zeros((self.taille,self.taille))
+                self.Matrice[self.robot.x][self.robot.y]=2
         else:
             if(taille>50):
                 print("Taille > 50")
                 self.taille=10
+                self.robot=robot
                 self.Matrice=np.zeros((self.taille,self.taille))
+                self.Matrice[self.robot.x][self.robot.y]=2
             else:
                 print("Erreur de taille")
                 self.taille=10
+                self.robot=robot
                 self.Matrice=np.zeros((self.taille,self.taille))
+                self.Matrice[self.robot.x][self.robot.y]=2
                 
     def ajouterObstacleAleatoire(self):
         for i in range(15):
@@ -38,4 +44,4 @@ class Arene:
             print("Erreur sur la valeur de y")
             return 
         else:
-            self.Matrice[x][y]=1
+        	self.Matrice[x][y]=1
