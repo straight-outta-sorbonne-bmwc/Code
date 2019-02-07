@@ -29,7 +29,7 @@ class Arene:
             self.Matrice[u][v]=1
 
     def avancerXPas(self, Pas):
-        for i in range (Pas):
+        for i in range(Pas):
             if (self.robot.y+1<self.taille):
                 self.robot.y=self.robot.y+1
                 self.Matrice[self.robot.x][self.robot.y]=2
