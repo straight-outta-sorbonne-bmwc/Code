@@ -44,7 +44,7 @@ class AffichageTK(object):
 		if(self.robot.y!=(self.arene.taille-1)):
 			print(self.robot.y)
 			self.arene.avancerXPas(1)
-			self.can.move(self.rectangle_robot, 1*self.e, 0)
+			self.can.move(self.rectangle_robot, 1*self.echelle, 0)
 
 # Programme principal
 if __name__ == '__main__':
