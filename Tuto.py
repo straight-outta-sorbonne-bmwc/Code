@@ -1,7 +1,7 @@
 class Tuto(object):
-	longueur = 60	# variable globale qui correspond à la longueur du rectangle
-	largeur = 30	# variable globale qui correspond à la largeur du rectangle
-	dim = 500		# variable globale qui correspond à la dimension de la fenêtre
+	longueur = 60	# variable globale qui correspond à la longueur du rectangle (en px)
+	largeur = 30	# variable globale qui correspond à la largeur du rectangle (en px)
+	dim = 500		# variable globale qui correspond à la dimension de la fenêtre en px
 	def __init__(self):
 		self.root = Tk()							# root variable contenant la fenêtre
 		self.root.title('Tuto')						# Nom de la fenêtre	
