@@ -45,3 +45,38 @@ class Arene:
             return 
         else:
         	self.Matrice[x][y]=1
+            
+            
+    def Avancer(self,u,v):
+        if((u>self.robot.x ) or (v>self.robot.y) or (self.robot.x<0) or (self.robot.y<0)):
+            print("Le point est hors de l'arène")
+            return
+        #print(self.Matrice)
+        #print("\n")
+        while (self.robot.x != u):
+            if (u>self.robot.x):
+                self.robot.x=self.robot.x+1
+                self.Matrice[self.robot.x][self.robot.y]=2
+                self.Matrice[self.robot.x-1][self.robot.y]=0
+                #print(self.Matrice)
+                #print("\n")
+            else :
+                self.robot.x=self.robot.x-1
+                self.Matrice[self.robot.x][self.robot.y]=2
+                self.Matrice[self.robot.x+1][self.robot.y]=0
+                #print(self.Matrice)
+                #print("\n")
+                
+        while (self.robot.y != v):
+            if (v>self.robot.y):
+                self.robot.y=self.robot.y+1
+                self.Matrice[self.robot.x][self.robot.y]=2
+                self.Matrice[self.robot.x][self.robot.y-1]=0
+                #print(self.Matrice)
+                #print("\n")
+            else :
+                self.robot.y=self.robot.y-1
+                self.Matrice[self.robot.x][self.robot.y]=2
+                self.Matrice[self.robot.x][self.robot.y+1]=0
+                #print(self.Matrice)
+                #print("\n")
