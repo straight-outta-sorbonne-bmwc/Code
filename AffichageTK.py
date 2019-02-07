@@ -12,7 +12,7 @@ class AffichageTK(object):
 		self.dim=arene.taille*self.echelle
 		self.root = Tk()							# root variable contenant la fenêtre
 		self.root.title('Tuto')						# Nom de la fenêtre	
-		self.can = Canvas(self.root, width=self.dim, height=self.dim, bg='white')			# création de la fenêtre 
+		self.can = Canvas(self.root, width=self.dim, height=self.dim, bg='black')			# création de la fenêtre 
 		self.can.pack()							
 		self.coordObstacle(self.arene)
 		self.afficheRobot(self.robot)
