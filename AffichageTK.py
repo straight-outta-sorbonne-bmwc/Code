@@ -18,7 +18,7 @@ class AffichageTK(object):
 		self.afficheRobot(self.robot)
 		obstacle = Button(self.root, text = 'obstacle', command=self.afficheObstacle)
 		avance = Button(self.root, text = 'avance', command=self.avancerRobot)																
-		quitter = Button(self.root, text = 'quitter', command=self.root.quit)				# bouton pour quitter la fenêtre
+		quitter = Button(self.root, text = 'quitter', command=self.root.destroy)				# bouton pour quitter la fenêtre
 		quitter.pack(side=BOTTOM)							# emplacement des boutons
 		avance.pack(side=RIGHT)
 		obstacle.pack(side=LEFT)
