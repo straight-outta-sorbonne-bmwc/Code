@@ -12,7 +12,7 @@ class AffichageTK(object):
 		self.dim=arene.taille*self.echelle
 		self.root = Tk()							# root variable contenant la fenêtre
 		self.root.title('Tuto')						# Nom de la fenêtre	
-		self.can = Canvas(self.root, width=self.dim, height=self.dim, bg='black')			# création de la fenêtre 
+		self.can = Canvas(self.root, width=self.dim, height=self.dim, bg='pink')			# création de la fenêtre 
 		self.can.pack()							
 		self.coordObstacle(self.arene)
 		self.afficheRobot(self.robot)
@@ -34,11 +34,11 @@ class AffichageTK(object):
 
 	def afficheObstacle(self):
 	    if(self.k<len(self.tabx) and self.k<len(self.taby)):
-	    	self.can.create_rectangle(self.tabx[self.k]*self.echelle,self.taby[self.k]*self.echelle,self.tabx[self.k]*self.echelle+self.echelle,self.taby[self.k]*self.echelle+self.echelle,fill='red')
+	    	self.can.create_rectangle(self.tabx[self.k]*self.echelle,self.taby[self.k]*self.echelle,self.tabx[self.k]*self.echelle+self.echelle,self.taby[self.k]*self.echelle+self.echelle,fill='yellow')
 	    	self.k=self.k+1 
 		
 	def afficheRobot(self, robot):
-		self.rectangle_robot = self.can.create_rectangle(self.robot.y*self.echelle, self.robot.x*self.echelle, self.robot.y*self.echelle+self.robot.taille, self.robot.x*self.echelle+self.robot.taille/2, fill="green")
+		self.rectangle_robot = self.can.create_rectangle(self.robot.y*self.echelle, self.robot.x*self.echelle, self.robot.y*self.echelle+self.robot.taille, self.robot.x*self.echelle+self.robot.taille/2, fill="black")
 
 	def avancerRobot(self):
 		if(self.robot.y!=(self.arene.taille-1)):
