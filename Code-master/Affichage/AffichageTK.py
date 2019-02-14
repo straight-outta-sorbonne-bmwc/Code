@@ -1,5 +1,6 @@
 
 
+import AffichageDeplacement
 class AffichageTK(object):
 	echelle=25				# à l'échelle x25 sur la fenêtre tkinter	
 	tabx=[]
@@ -16,6 +17,7 @@ class AffichageTK(object):
 		self.can.pack()							
 		self.coordObstacle(self.arene)
 		self.afficheRobot(self.robot)
+		AffichageDeplacement.avancer()
 		obstacle = Button(self.root, text = 'obstacle', command=self.afficheObstacle)
 		avance = Button(self.root, text = 'avance', command=self.avancerRobot)																
 		quitter = Button(self.root, text = 'quitter', command=self.root.destroy)				# bouton pour quitter la fenêtre
@@ -58,4 +60,3 @@ if __name__ == '__main__':
 	arene.ajouterObstacleAleatoire()
 	f = AffichageTK(arene, robot)
 
-#---------------------------------
