@@ -1,6 +1,12 @@
 import Arene
-class Test:
-    carre=Arene.Arene(10)
-    #print(carre.Matrice)
-    carre.ajouterObstacleAleatoire()
-    print(carre.Matrice)    
+import Robot
+
+robot = Robot.Robot(5, 5)
+carre = Arene.Arene(10, robot)
+carre.ajouterObstacleAleatoire()
+print(carre.Matrice)
+print("\n")
+carre.EcritureFichier("fichier.txt")
+carre.LectureFichier("fichier.txt")
+print(carre.Matrice)
+print("\n")
