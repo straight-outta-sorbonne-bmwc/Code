@@ -1,6 +1,6 @@
 import math
 class Robot:
-    def __init__(self,x,y,longueur,largeur,direction):
+    def __init__(self,x,y,longueur,largeur):
         self.x=x
         self.y=y
         self.longueur=longueur

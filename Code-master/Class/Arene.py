@@ -1,6 +1,8 @@
 import numpy as np
 import random
+import Obstacle
 class Arene:
+    obstacles = []      # liste d'obstacles
     def __init__(self,taille, robot):
         if(type(taille)==int):
             if(taille>0 and taille<=50):    
@@ -60,10 +62,11 @@ class Arene:
     
     
     def ajouterObstacleAleatoire(self):
+        """ la méthode ajoute 15 obstacles aléatoirement dans la liste d'obstacle"""
         for i in range(15):
             u=random.randint(0,self.taille-1)
             v=random.randint(0,self.taille-1)
-            self.Matrice[u][v]=1
+            self.obstacles.append(Obstacle.Obstacle(u, v))
 
     def avancerXPas(self, Pas):
         for i in range(Pas):
