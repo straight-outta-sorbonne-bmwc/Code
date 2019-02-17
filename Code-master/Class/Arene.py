@@ -5,27 +5,12 @@ class Arene:
     obstacles = []      # liste d'obstacles
     def __init__(self,taille, robot):
         if(type(taille)==int):
-            if(taille>0 and taille<=50):    
+            if(taille>0):
                 self.taille=taille
                 self.robot=robot
-                self.Matrice=np.zeros((self.taille,self.taille))
-                self.Matrice[self.robot.x][self.robot.y]=2
-        else:
-            if(taille>50):
-                print("Taille > 50")
-                self.taille=10
-                self.robot=robot
-                self.Matrice=np.zeros((self.taille,self.taille))
-                self.Matrice[self.robot.x][self.robot.y]=2
             else:
                 print("Erreur de taille")
-                self.taille=10
-                self.robot=robot
-                self.Matrice=np.zeros((self.taille,self.taille))
-                self.Matrice[self.robot.x][self.robot.y]=2
     
-    
-
 
     def LectureFichier(self,fichier):
         i=-1
@@ -67,24 +52,12 @@ class Arene:
             u=random.randint(0,self.taille-1)
             v=random.randint(0,self.taille-1)
             self.obstacles.append(Obstacle.Obstacle(u, v))
+           
 
-    def avancerXPas(self, Pas):
-        for i in range(Pas):
-            if (self.robot.y+1<self.taille):
-                self.robot.y=self.robot.y+1
-                self.Matrice[self.robot.x][self.robot.y]=2
-                self.Matrice[self.robot.x][self.robot.y-1]=0
+
 
                 
-    def AddObstacle(self, x, y):
-        if(x<0 or x>self.taille-1):
-            print("Erreur sur la valeur de x")
-            return
-        if(y<0 or y>self.taille-1):
-            print("Erreur sur la valeur de y")
-            return 
-        else:
-        	self.Matrice[x][y]=1
+    
 
     def Collision(self, x, y):
         """ Si la position (x, y) est le bord de l'arene ou si un 
@@ -99,37 +72,3 @@ class Arene:
                 return false
             return true
             
-    def Avancer(self,u,v):
-        if((u>self.taille ) or (v>self.taille) or (self.taille<0) or (self.taille<0)):
-            print("Le point est hors de l'arène")
-            return
-        #print(self.Matrice)
-        print("\n")
-        while (self.robot.x != u):
-            if (u>self.robot.x):
-                self.robot.x=self.robot.x+1
-                self.Matrice[self.robot.x][self.robot.y]=2
-                self.Matrice[self.robot.x-1][self.robot.y]=0
-                #print(self.Matrice)
-                #print("\n")
-            else :
-                self.robot.x=self.robot.x-1
-                self.Matrice[self.robot.x][self.robot.y]=2
-                self.Matrice[self.robot.x+1][self.robot.y]=0
-                #print(self.Matrice)
-                #print("\n")
-                
-        while (self.robot.y != v):
-            if (v>self.robot.y):
-                self.robot.y=self.robot.y+1
-                self.Matrice[self.robot.x][self.robot.y]=2
-                self.Matrice[self.robot.x][self.robot.y-1]=0
-                #print(self.Matrice)
-                #print("\n")
-            else :
-                self.robot.y=self.robot.y-1
-                self.Matrice[self.robot.x][self.robot.y]=2
-                self.Matrice[self.robot.x][self.robot.y+1]=0
-                #print(self.Matrice)
-#print("\n")
-
