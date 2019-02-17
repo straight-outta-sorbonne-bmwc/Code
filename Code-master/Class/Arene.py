@@ -4,6 +4,7 @@ import Obstacle
 class Arene:
     obstacles = []      # liste d'obstacles
     def __init__(self,taille, robot):
+        self.taille=taille
         if(type(taille)==int):
             if(taille>0 and taille<=50):    
                 self.taille=taille
