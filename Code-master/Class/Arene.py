@@ -57,10 +57,8 @@ class Arene:
     def AddObstacle(self, x, y):
         if(x<0 or x>self.taille-1):
             print("Erreur sur la valeur de x")
-            return
-        if(y<0 or y>self.taille-1):
-            print("Erreur sur la valeur de y")
-            return 
+        elif(y<0 or y>self.taille-1):
+            print("Erreur sur la valeur de y") 
         else:
         	self.obstacles.append(Obstacle.Obstacle(x, y))
 
