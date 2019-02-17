@@ -6,27 +6,12 @@ class Arene:
     def __init__(self,taille, robot):
         self.taille=taille
         if(type(taille)==int):
-            if(taille>0 and taille<=50):    
+            if(taille>0):
                 self.taille=taille
                 self.robot=robot
-                self.Matrice=np.zeros((self.taille,self.taille))
-                self.Matrice[self.robot.x][self.robot.y]=2
-        else:
-            if(taille>50):
-                print("Taille > 50")
-                self.taille=10
-                self.robot=robot
-                self.Matrice=np.zeros((self.taille,self.taille))
-                self.Matrice[self.robot.x][self.robot.y]=2
             else:
                 print("Erreur de taille")
-                self.taille=10
-                self.robot=robot
-                self.Matrice=np.zeros((self.taille,self.taille))
-                self.Matrice[self.robot.x][self.robot.y]=2
     
-    
-
 
     def LectureFichier(self,fichier):
         i=-1
@@ -34,17 +19,10 @@ class Arene:
             print("Erreur dans le type de fichier")
         else:
             f = open(fichier,'r')
-            contenu = f.read()
-            x=0
-            y=0
+            contenu = f.read()#contenu du fichier txt
             for e in contenu:
                 if not(e=='[' or e==']' or e==',' or e==' ', e=='.'):
-                    self.Matrice[x][y]=int(e)
-                    y+=1
-                    if(y==self.taille):
-                        x+=1
-                        y=0
-                    
+                    self.obstacles.append(int(e))
             f.close()
             
             
@@ -55,11 +33,9 @@ class Arene:
             print("Erreur dans le type de fichier")
         else:
             f = open(fichier,'w')
-            for e in self.Matrice:
+            for e in self.obstacles:
                 f.write(str(e))
             f.close()
-    
-    
     
     
     def ajouterObstacleAleatoire(self):
@@ -68,24 +44,18 @@ class Arene:
             u=random.randint(0,self.taille-1)
             v=random.randint(0,self.taille-1)
             self.obstacles.append(Obstacle.Obstacle(u, v))
+           
 
-    def avancerXPas(self, Pas):
-        for i in range(Pas):
-            if (self.robot.y+1<self.taille):
-                self.robot.y=self.robot.y+1
-                self.Matrice[self.robot.x][self.robot.y]=2
-                self.Matrice[self.robot.x][self.robot.y-1]=0
-
-                
     def AddObstacle(self, x, y):
         if(x<0 or x>self.taille-1):
             print("Erreur sur la valeur de x")
-            return
-        if(y<0 or y>self.taille-1):
-            print("Erreur sur la valeur de y")
-            return 
+        elif(y<0 or y>self.taille-1):
+            print("Erreur sur la valeur de y") 
         else:
-        	self.Matrice[x][y]=1
+        	self.obstacles.append(Obstacle.Obstacle(x, y))
+
+                
+    
 
     def Collision(self, x, y):
         """ Si la position (x, y) est le bord de l'arene ou si un 
@@ -100,37 +70,3 @@ class Arene:
                 return false
             return true
             
-    def Avancer(self,u,v):
-        if((u>self.taille ) or (v>self.taille) or (self.taille<0) or (self.taille<0)):
-            print("Le point est hors de l'arène")
-            return
-        #print(self.Matrice)
-        print("\n")
-        while (self.robot.x != u):
-            if (u>self.robot.x):
-                self.robot.x=self.robot.x+1
-                self.Matrice[self.robot.x][self.robot.y]=2
-                self.Matrice[self.robot.x-1][self.robot.y]=0
-                #print(self.Matrice)
-                #print("\n")
-            else :
-                self.robot.x=self.robot.x-1
-                self.Matrice[self.robot.x][self.robot.y]=2
-                self.Matrice[self.robot.x+1][self.robot.y]=0
-                #print(self.Matrice)
-                #print("\n")
-                
-        while (self.robot.y != v):
-            if (v>self.robot.y):
-                self.robot.y=self.robot.y+1
-                self.Matrice[self.robot.x][self.robot.y]=2
-                self.Matrice[self.robot.x][self.robot.y-1]=0
-                #print(self.Matrice)
-                #print("\n")
-            else :
-                self.robot.y=self.robot.y-1
-                self.Matrice[self.robot.x][self.robot.y]=2
-                self.Matrice[self.robot.x][self.robot.y+1]=0
-                #print(self.Matrice)
-#print("\n")
-

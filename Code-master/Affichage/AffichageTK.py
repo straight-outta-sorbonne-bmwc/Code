@@ -35,3 +35,8 @@ if __name__ == '__main__':
 	arene=Arene.Arene(1000, robot)
 	arene.ajouterObstacleAleatoire()
 	f = AffichageTK(arene, robot)
+<<<<<<< HEAD
+=======
+
+
+>>>>>>> 8cbf80cb3d0be0b315b52d8495e5b50cd1526e7a
