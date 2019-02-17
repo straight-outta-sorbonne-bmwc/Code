@@ -18,17 +18,10 @@ class Arene:
             print("Erreur dans le type de fichier")
         else:
             f = open(fichier,'r')
-            contenu = f.read()
-            x=0
-            y=0
+            contenu = f.read()#contenu du fichier txt
             for e in contenu:
                 if not(e=='[' or e==']' or e==',' or e==' ', e=='.'):
-                    self.Matrice[x][y]=int(e)
-                    y+=1
-                    if(y==self.taille):
-                        x+=1
-                        y=0
-                    
+                    self.obstacles.append(int(e))
             f.close()
             
             
@@ -39,11 +32,9 @@ class Arene:
             print("Erreur dans le type de fichier")
         else:
             f = open(fichier,'w')
-            for e in self.Matrice:
+            for e in self.obstacles:
                 f.write(str(e))
             f.close()
-    
-    
     
     
     def ajouterObstacleAleatoire(self):
