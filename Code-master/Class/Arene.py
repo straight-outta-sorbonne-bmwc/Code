@@ -20,9 +20,21 @@ class Arene:
         else:
             f = open(fichier,'r')
             contenu = f.read()#contenu du fichier txt
+            res1=0
+            res2=0
+            x=0
             for e in contenu:
-                if not(e=='[' or e==']' or e==',' or e==' ', e=='.'):
-                    self.obstacles.append(int(e))
+                if x==2:
+                    self.obstacles.append(Obstacle.Obstacle(res1,res2))
+                    res1=0
+                    res2=0
+                    x=0
+                elif not(e=='[' or e==']' or e==',' or e==' ' or e=='.' or e=='(' or e== ')'):
+                    if x==0 :
+                        res1=int(e)
+                    else:
+                        res2=int(e)
+                    x+=1
             f.close()
             
             
