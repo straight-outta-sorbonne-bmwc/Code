@@ -1,6 +1,7 @@
 import numpy as np
 import random
 import Obstacle
+
 class Arene:
     obstacles = []      # liste d'obstacles
     def __init__(self,taille, robot):
@@ -20,9 +21,21 @@ class Arene:
         else:
             f = open(fichier,'r')
             contenu = f.read()#contenu du fichier txt
+            res1=0
+            res2=0
+            x=0
             for e in contenu:
-                if not(e=='[' or e==']' or e==',' or e==' ', e=='.'):
-                    self.obstacles.append(int(e))
+                if x==2:
+                    self.obstacles.append(Obstacle.Obstacle(res1,res2))
+                    res1=0
+                    res2=0
+                    x=0
+                elif not(e=='[' or e==']' or e==',' or e==' ' or e=='.' or e=='(' or e== ')'):
+                    if x==0 :
+                        res1=int(e)
+                    else:
+                        res2=int(e)
+                    x+=1
             f.close()
             
             
@@ -34,7 +47,7 @@ class Arene:
         else:
             f = open(fichier,'w')
             for e in self.obstacles:
-                f.write(str(e))
+                f.write(str((e.x,e.y)))
             f.close()
     
     
@@ -53,20 +66,3 @@ class Arene:
             print("Erreur sur la valeur de y") 
         else:
         	self.obstacles.append(Obstacle.Obstacle(x, y))
-
-                
-    
-
-    def Collision(self, x, y):
-        """ Si la position (x, y) est le bord de l'arene ou si un 
-        obstacle s'y trouve la fonction renvoie false sinon true"""
-
-        if(x<0 or x>self.taille-1):
-            return false
-        if(y<0 or y>self.taille-1):
-            return false
-        else:
-            if (self.Matrice[x][y]==1):
-                return false
-            return true
-            
