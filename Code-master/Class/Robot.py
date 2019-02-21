@@ -24,3 +24,4 @@ class Robot:
         self.y=a[1]+vnor[1]
         return vnor #retourne le vecteur de deplacement normalisé
             
+
