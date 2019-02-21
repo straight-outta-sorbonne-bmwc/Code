@@ -15,42 +15,23 @@ class Arene:
                 print("Erreur de taille")
     
 
+
     def LectureFichier(self,fichier):
-        i=-1
-        if  not (fichier[i]=='t' and fichier[i-1]=='x' and fichier[i-2]=='t'):  #lit un fichier .txt pris en parametre et met toute les valeurs du fichier dans la variable Matrice.
+        if  not (fichier[-1]=='l' and fichier[-2]=='k' and fichier[-3]=='p'):
             print("Erreur dans le type de fichier")
-        else:
-            f = open(fichier,'r')
-            contenu = f.read()#contenu du fichier txt
-            res1=0
-            res2=0
-            x=0
-            for e in contenu:
-                if x==2:
-                    self.obstacles.append(Obstacle.Obstacle(res1,res2))
-                    res1=0
-                    res2=0
-                    x=0
-                elif not(e=='[' or e==']' or e==',' or e==' ' or e=='.' or e=='(' or e== ')'):
-                    if x==0 :
-                        res1=int(e)
-                    else:
-                        res2=int(e)
-                    x+=1
-            f.close()
-            
+            return
+        with open(fichier,'rb') as f:
+            new_arene=pickle.load(f)
+        return new_arene
+
             
             
     def EcritureFichier(self,fichier):                                 #Modifie un fichier .txt pris en parametre et met toute les valeurs de l'arene dedans.
-        i=-1
-        if  not (fichier[i]=='t' and fichier[i-1]=='x' and fichier[i-2]=='t'):
+        if  not (fichier[-1]=='l' and fichier[-2]=='k' and fichier[-3]=='p'):
             print("Erreur dans le type de fichier")
         else:
-            f = open(fichier,'w')
-            for e in self.obstacles:
-                f.write(str((e.x,e.y)))
-            f.close()
-    
+            with open(fichier,'wb') as f:
+                pickle.dump(self,f)
     
     def ajouterObstacleAleatoire(self):
         """ la méthode ajoute 15 obstacles aléatoirement dans la liste d'obstacle"""
