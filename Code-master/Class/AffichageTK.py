@@ -8,10 +8,10 @@ class AffichageTK(object):
 		self.root = Tk()							# root variable contenant la fenêtre
 		self.root.title('Tuto')						# Nom de la fenêtre	
 		self.can = Canvas(self.root, width=self.dim, height=self.dim, bg='pink')			# création de la fenêtre 
-		self.can.pack()
-		self.demo()											
+		self.can.pack()										
 		quitter = Button(self.root, text = 'quitter', command=self.root.destroy)				# bouton pour quitter la fenêtre
 		quitter.pack(side=BOTTOM)							# emplacement des boutons
+		self.demo()	
 		self.root.mainloop()
 
 	def afficheObstacle(self):
@@ -33,8 +33,22 @@ class AffichageTK(object):
 			self.can.update()
 
 	def demo(self):
+		self.afficheRobot()
+		vecteur = (random.randint(-1.0, 1.0), random.randint(-1.0, 1.0))
+		while(True):
+			time.sleep(0.01)
+			if (arene.collision(robot.x+vecteur[0], robot.y+vecteur[1])):
+				robot.avanceDansDirection(vecteur)
+				self.can.move(self.r, vecteur[0], vecteur[1])
+				self.can.update()
+			else:
+				print("bloquer")
+				print(vecteur)
+				vecteur = (random.randint(-1.0, 1.0), random.randint(-1.0, 1.0))
+
+	def demo2(self):
 		self.afficheRobot()	
-		self.vers((600,10))
+		self.vers((1000,1000))
 		self.vers((10, 10))
 		self.vers((350,300)) 
 		self.vers((600,600))
@@ -52,6 +66,7 @@ if __name__ == '__main__':
 	import Robot
 	import calcul
 	import time
+	import random
 	from tkinter import*												
 	#test----------------------------
 	robot=Robot.Robot(500, 500, 100, 100)
