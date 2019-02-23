@@ -16,7 +16,7 @@ class Arene:
     
 
 
-    def LectureFichier(self,fichier):
+    def lecture_fichier(self,fichier):
         if  not (fichier[-1]=='l' and fichier[-2]=='k' and fichier[-3]=='p'):
             print("Erreur dans le type de fichier")
             return
@@ -26,14 +26,14 @@ class Arene:
 
             
             
-    def EcritureFichier(self,fichier):                                 #Modifie un fichier .txt pris en parametre et met toute les valeurs de l'arene dedans.
+    def ecriture_fichier(self,fichier):                                 #Modifie un fichier .txt pris en parametre et met toute les valeurs de l'arene dedans.
         if  not (fichier[-1]=='l' and fichier[-2]=='k' and fichier[-3]=='p'):
             print("Erreur dans le type de fichier")
         else:
             with open(fichier,'wb') as f:
                 pickle.dump(self,f)
     
-    def ajouterObstacleAleatoire(self):
+    def ajouter_obstacle_aleatoire(self):
         """ la méthode ajoute 15 obstacles aléatoirement dans la liste d'obstacle"""
         for i in range(15):
             u=random.randint(0,self.taille-1)
@@ -41,7 +41,7 @@ class Arene:
             self.obstacles.append(Obstacle.Obstacle(u, v))
            
 
-    def AddObstacle(self, x, y):
+    def add_obstacle(self, x, y):
         if(x<0 or x>self.taille-1):
             print("Erreur sur la valeur de x")
         elif(y<0 or y>self.taille-1):
