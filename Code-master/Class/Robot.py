@@ -16,9 +16,9 @@ class Robot:
         #self.v = round(- xm * math.sin(math.radians(angle)) + ym * math.cos(math.radians(angle))+ self.y,2)
           
     #cette fonction fait avancer le robot pas à pas vers b
-    def avancevers(self, b): #prend en paramètre les coordonnées de là où il veut aller sous la forme (x, y)
+    def avance_vers(self, b): #prend en paramètre les coordonnées de là où il veut aller sous la forme (x, y)
         a=(self.x, self.y) 
-        vect=calcul.calculvecteur(a, b)
+        vect=calcul.calcul_vecteur(a, b)
         vnor=calcul.normalize(vect)
         self.x=a[0]+vnor[0]
         self.y=a[1]+vnor[1]
