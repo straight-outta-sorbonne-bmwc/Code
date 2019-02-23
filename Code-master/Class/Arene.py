@@ -74,3 +74,11 @@ class Arene:
         vtemp = round(v[0] * math.cos(math.radians(angle)) - vy * math.sin(math.radians(angle)))
         vy = round(- v[0] * math.sin(math.radians(angle)) + vy * math.cos(math.radians(angle)))
         return (vtemp, vy)
+    
+    
+    def est_vide(self,x,y):
+        for i in range(len(self.obstacles)):
+            if ((self.obstacles[i].x==x) and (self.obstacles[i].y==y) or (self.robot.x==x and self.robot.y==y)):
+                return False
+            else:
+                return True
