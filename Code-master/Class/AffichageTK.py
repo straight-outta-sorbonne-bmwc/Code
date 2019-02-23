@@ -14,31 +14,31 @@ class AffichageTK(object):
 		self.demo()	
 		self.root.mainloop()
 
-	def afficheObstacle(self):
+	def affiche_obstacle(self):
 	    for i in self.arene.obstacles:
 	    	self.can.create_rectangle(i.x, i.y, i.x+i.taille, i.y+i.taille,fill='yellow')
 
 		
-	def afficheRobot(self):
+	def affiche_robot(self):
 		self.r = self.can.create_rectangle(self.robot.y, self.robot.x, self.robot.y+self.robot.longueur, self.robot.x+self.robot.largeur, fill="black")
 
 
 	def vers(self, coord):
 		pos=(self.robot.x, self.robot.y)
 		while(calcul.distance(pos, coord)>3):
-			res=self.robot.avancevers(coord)
+			res=self.robot.avance_vers(coord)
 			pos=(self.robot.x, self.robot.y)
 			time.sleep(0.025)
 			self.can.move(self.r, res[0], res[1])
 			self.can.update()
 
 	def demo(self):
-		self.afficheRobot()
+		self.affiche_robot()
 		vecteur = (random.randint(-1.0, 1.0), random.randint(-1.0, 1.0))
 		while(True):
 			time.sleep(0.01)
 			if (arene.collision(robot.x+vecteur[0], robot.y+vecteur[1])):
-				robot.avanceDansDirection(vecteur)
+				robot.avance_vers(vecteur)
 				self.can.move(self.r, vecteur[0], vecteur[1])
 				self.can.update()
 			else:
@@ -47,7 +47,7 @@ class AffichageTK(object):
 				vecteur = (random.randint(-1.0, 1.0), random.randint(-1.0, 1.0))
 
 	def demo2(self):
-		self.afficheRobot()	
+		self.affiche_robot()	
 		self.vers((1000,1000))
 		self.vers((10, 10))
 		self.vers((350,300)) 
@@ -71,5 +71,5 @@ if __name__ == '__main__':
 	#test----------------------------
 	robot=Robot.Robot(500, 500, 100, 100)
 	arene=Arene.Arene(1000, robot)
-	arene.ajouterObstacleAleatoire()
+	arene.ajouter_obstacle_aleatoire()
 	f = AffichageTK(arene, robot)
