@@ -9,12 +9,10 @@ class Robot:
         self.direction=(1.0,0.0)#(tuple(u,v))
         #Coordonne=[(self.x,self.y),(self.x+self.longueur,self.y),(self.x+longueur,self.y+largeur),(self.x,self.y+self.largeur)] coordonnées de A,B,C,D
     
-    #def rotation(self,angle):#angle positif = sens des aiguille d'une montre et angle negatif = sens inverse
-        #xm=self.direction.u-self.x
-        #ym=self.direction.v-self.y
-        #self.u= round(xm * math.cos(math.radians(angle)) + ym * math.sin(math.radians(angle)) + self.x,2)
-        #self.v = round(- xm * math.sin(math.radians(angle)) + ym * math.cos(math.radians(angle))+ self.y,2)
-          
+    def rotation(self,vecteur):#modifie la direction du robot (vecteur entre -1<=x<=1)
+        self.direction[0]=vecteur[0]
+        self.direction[1]=vecteur[1]
+        
     #cette fonction fait avancer le robot pas à pas vers b
     def avance_vers(self, b): #prend en paramètre les coordonnées de là où il veut aller sous la forme (x, y)
         a=(self.x, self.y) 
