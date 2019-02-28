@@ -1,7 +1,7 @@
 import numpy as np
 import math
 import random
-import Obstacle
+from module_robot import robot
 
 class Arene:
     obstacles = []      # liste d'obstacles

@@ -1,5 +1,6 @@
 import math
-import calcul
+from . import calcul
+
 class Robot:
     def __init__(self,x,y,longueur,largeur):
         self.x=x
@@ -14,10 +15,10 @@ class Robot:
         self.direction[1]=vecteur[1]
         
     #cette fonction fait avancer le robot pas à pas vers b
-    def avance_vers(self, b): #prend en paramètre les coordonnées de là où il veut aller sous la forme (x, y)
+    def avance_vers(self, b): 
         a=(self.x, self.y) 
         vect=calcul.calcul_vecteur(a, b)
         vnor=calcul.normalize(vect)
         self.x=a[0]+vnor[0]
         self.y=a[1]+vnor[1]
-	return vnor #retourne le vecteur de deplacement normalisé
+        return vnor #retourne le vecteur de deplacement normalisé

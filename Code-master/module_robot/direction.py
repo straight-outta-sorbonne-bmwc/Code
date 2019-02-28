@@ -1,5 +1,5 @@
 import math
-import Robot
+from .robot import Robot
 class Direction:
     def __init__(self,u,v):
         self.u=u
