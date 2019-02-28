@@ -20,6 +20,4 @@ class Robot:
         vnor=calcul.normalize(vect)
         self.x=a[0]+vnor[0]
         self.y=a[1]+vnor[1]
-        return vnor #retourne le vecteur de deplacement normalisé
-            
-
+	return vnor #retourne le vecteur de deplacement normalisé

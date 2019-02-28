@@ -1,9 +1,3 @@
-# -*- coding: utf-8 -*-
-"""
-Created on Sun Feb 17 00:48:36 2019
-
-@author: franc
-"""
 import math 
 
 def distance(a,b): #calcule la distance entre 2 points, prend en paramètre 2 points de la forme (x, y)

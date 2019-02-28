@@ -72,4 +72,4 @@ if __name__ == '__main__':
 	robot=Robot.Robot(500, 500, 100, 100)
 	arene=Arene.Arene(1000, robot)
 	arene.ajouter_obstacle_aleatoire()
-	f = AffichageTK(arene, robot)
+f = AffichageTK(arene, robot)
