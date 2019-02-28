@@ -1,4 +1,3 @@
-import math
 from . import calcul
 
 class Robot:
@@ -7,18 +6,28 @@ class Robot:
         self.y=y
         self.longueur=longueur
         self.largeur=largeur
-        self.direction=(1.0,0.0)#(tuple(u,v))
-        #Coordonne=[(self.x,self.y),(self.x+self.longueur,self.y),(self.x+longueur,self.y+largeur),(self.x,self.y+self.largeur)] coordonnées de A,B,C,D
-    
-    def refreshdir(self,vecteur):#modifie la direction du robot (vecteur entre -1<=x<=1)
-        self.direction[0]=vecteur[0]
-        self.direction[1]=vecteur[1]
+        self.ptv=(self.x+(self.longueur/2), self.y)
+        c=calcul.calculvecteur((self.x,self.y), self.ptv)
+        self.direction=(c[0], c[1])#(tuple(u,v))
         
-    #cette fonction fait avancer le robot pas à pas vers b
-    def avance_vers(self, b): 
-        a=(self.x, self.y) 
-        vect=calcul.calcul_vecteur(a, b)
+    def rotation(self,angle):#angle positif = sens des aiguille d'une montre et angle negatif = sens inverse
+        #xm=self.direction.u-self.x
+        #ym=self.direction.v-self.y
+        #self.u= round(xm * math.cos(math.radians(angle)) + ym * math.sin(math.radians(angle)) + self.x,2)
+        #self.v = round(- xm * math.sin(math.radians(angle)) + ym * math.cos(math.radians(angle))+ self.y,2)
+        rot=calcul.rotatePoint(self.ptv, (self.x,self.y), angle)
+        self.ptv=(rot[0],rot[1])
+        c=calcul.calculvecteur((self.x,self.y), self.ptv)
+        self.direction=(c[0], c[1])
+        
+    def avance_vers(self, b):
+        a=(self.x, self.y)
+        ptvbis=self.ptv
+        vect=calcul.calculvecteur(a, b)
         vnor=calcul.normalize(vect)
         self.x=a[0]+vnor[0]
         self.y=a[1]+vnor[1]
-        return vnor #retourne le vecteur de deplacement normalisé
+        self.ptv[0]=ptvbis[0]+vnor
+        self.ptv[1]=ptvbis[1]+vnor
+
+
