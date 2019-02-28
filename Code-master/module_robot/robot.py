@@ -9,7 +9,7 @@ class Robot:
         self.direction=(1.0,0.0)#(tuple(u,v))
         #Coordonne=[(self.x,self.y),(self.x+self.longueur,self.y),(self.x+longueur,self.y+largeur),(self.x,self.y+self.largeur)] coordonnées de A,B,C,D
     
-    def rotation(self,vecteur):#modifie la direction du robot (vecteur entre -1<=x<=1)
+    def refreshdir(self,vecteur):#modifie la direction du robot (vecteur entre -1<=x<=1)
         self.direction[0]=vecteur[0]
         self.direction[1]=vecteur[1]
         
