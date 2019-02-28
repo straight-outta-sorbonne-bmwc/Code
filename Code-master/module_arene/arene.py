@@ -81,4 +81,4 @@ class Arene:
             if ((self.obstacles[i].x==x) and (self.obstacles[i].y==y) or (self.robot.x==x and self.robot.y==y)):
                 return False
             else:
-return True
+                return True
