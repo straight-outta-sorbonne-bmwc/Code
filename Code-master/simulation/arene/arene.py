@@ -5,11 +5,10 @@ from ..robot import robot
 
 class Arene:
     obstacles = []      # liste d'obstacles
-    def __init__(self,taille, robot):
-        self.taille=taille
+    def __init__(self, robot):
+        self.taille=1000
         if(type(taille)==int):
             if(taille>0):
-                self.taille=taille
                 self.robot=robot
             else:
                 print("Erreur de taille")
