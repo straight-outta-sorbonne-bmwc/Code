@@ -1,6 +1,4 @@
-import module_arene as arene
-import module_robot as robot
-import module_affichage as affichage
+from simulation import *
 
 robot=robot.Robot(500, 500, 50, 50)
 arene=arene.Arene(700, robot)
