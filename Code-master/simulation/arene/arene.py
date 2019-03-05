@@ -7,14 +7,8 @@ class Arene:
     obstacles = []      # liste d'obstacles
     def __init__(self, robot):
         self.taille=1000
-        if(type(taille)==int):
-            if(taille>0):
-                self.robot=robot
-            else:
-                print("Erreur de taille")
+        self.robot=robot
     
-
-
     def lecture_fichier(self,fichier):
         if  not (fichier[-1]=='l' and fichier[-2]=='k' and fichier[-3]=='p'):
             print("Erreur dans le type de fichier")
