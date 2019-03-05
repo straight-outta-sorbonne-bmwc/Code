@@ -6,7 +6,7 @@ from ..robot import robot
 class Arene:
     obstacles = []      # liste d'obstacles
     def __init__(self, robot):
-        self.taille=1000
+        self.taille=1000        # la taille de l'arene est fixe maintenant comme sa pas de prise de tête
         self.robot=robot
     
     def lecture_fichier(self,fichier):
