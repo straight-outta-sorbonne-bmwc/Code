@@ -1,7 +1,7 @@
 from simulation import *
 
 robot=robot.Robot(500, 500, 50, 50)
-arene=arene.Arene(700, robot)
+arene=arene.Arene(robot)
 
 canvas=affichage.AffichageTK(arene,robot)
 
