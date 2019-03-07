@@ -1,5 +1,7 @@
 import math 
 
+
+
 def rotatePoint(M, O, angle) :
     angle*=math.pi / 180
     xM = M[0] - O[0]
@@ -22,14 +24,12 @@ def normevecteur(a): #calcule la norme du vecteur a, prend en paramètre les coo
 
 def normalize(a): #normalise un vecteur et prend en paramètre les coordonnées d'un vecteur sous la forme (x, y)
     n=normevecteur(a)/4
-    return round(a[0]/n,2), round(a[1]/n,2) #retourne un tuple
+    return [round(a[0]/n,2), round(a[1]/n,2)] #retourne un tuple
 
 def angle2vect(a,b): #calcule l'angle entre le vecteur a et b prend en paramétre les coordonnées des vecteurs sous la forme (x, y)
     in1=a[0]*b[0]+a[1]*b[1]
     in2=normevecteur(a)*normevecteur(b)
-    if ((a[0]>0 and b[0]<0) or (a[1]>0 and b[1]<0)) or ((a[0]<0 and b[0]>0) or (a[1]<0 and b[1]>0)):
-        return round(math.acos(in1/in2)*(180/math.pi), 2)*(-1) #retourne la valeur de l'angle en degré arrondi à 2 chiffres après la virgule
-    else:
-        return round(math.acos(in1/in2)*(180/math.pi), 2)
+    return round(math.acos(in1/in2)*(180/math.pi), 2)
+
 
 
