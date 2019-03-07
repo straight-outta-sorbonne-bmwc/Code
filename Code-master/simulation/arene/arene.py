@@ -54,10 +54,6 @@ class Arene:
         milieu = (x-u_robot, y-v_robot)
         c = (milieu[0]+self.rotation(90, self.robot.direction)[0]+self.robot.largeur/2, milieu[1]+self.rotation(90, self.robot.direction)[1]+self.robot.largeur/2)
         d = (milieu[0]+self.rotation(-90, self.robot.direction)[0]+self.robot.largeur/2, milieu[1]+self.rotation(-90, self.robot.direction)[1]+self.robot.largeur/2)
-        print(self.robot.x, self.robot.y)
-        print("\n")
-        print(a, b, c, d)
-        print("\n")
         if(a[0]<0 or b[0]<0 or c[0]<0 or d[0]<0 or a[1]<0 or b[1]<0 or c[1]<0 or d[1]<0 or a[0]>self.taille or b[0]>self.taille or c[0]>self.taille or d[0]>self.taille or a[1]>self.taille or b[1]>self.taille or c[1]>self.taille or d[1]>self.taille):
             return False
         else :
