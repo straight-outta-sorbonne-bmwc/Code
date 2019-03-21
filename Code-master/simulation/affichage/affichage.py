@@ -30,7 +30,8 @@ class AffichageTK(object):
             
     def affiche_robot(self):
         #self.r = self.can.create_rectangle(self.robot.y, self.robot.x, self.robot.y+self.robot.longueur, self.robot.x+self.robot.largeur, fill="black")
-        self.r=self.can.create_rectangle(self.robot.x-(self.robot.longueur/2), self.robot.y-(self.robot.longueur/2), self.robot.x+(self.robot.longueur/2), self.robot.y+(self.robot.longueur/2), fill="green")
+        #self.r=self.can.create_rectangle(self.robot.x-(self.robot.longueur/2), self.robot.y-(self.robot.longueur/2), self.robot.x+(self.robot.longueur/2), self.robot.y+(self.robot.longueur/2), fill="green")
+        self.r=self.can.create_polygon(self.robot.a[0],self.robot.a[1],self.robot.b[0],self.robot.b[1],self.robot.c[0],self.robot.c[1],self.robot.d[0],self.robot.d[1],fill="green")
         self.l=self.can.create_line(self.robot.x, self.robot.y, self.robot.ptv[0] , self.robot.ptv[1], arrow='last', fill='blue')
         
     def deleterobot(self):
@@ -41,11 +42,26 @@ class AffichageTK(object):
         angle=random.randint(0,180)
         #angle=90
         #print(angle)
-        self.robot.rotationDroite(angle)
+        """self.robot.rotationDroite(angle)
         while(True):
             time.sleep(0.02)
             self.affiche_robot()
             if (self.arene.collision(self.robot.x + self.robot.direction[0], self.robot.y + self.robot.direction[1])):
+                self.robot.avance_vers()
+            else :
+                angle=random.randint(0,180)
+                self.robot.rotationDroite(angle)
+            self.can.update()
+            self.deleterobot()"""
+
+
+
+
+        self.robot.rotationDroite(angle)
+        while(True):
+            time.sleep(0.02)
+            self.affiche_robot()
+            if (self.arene.collision()):
                 self.robot.avance_vers()
             else :
                 angle=random.randint(0,180)

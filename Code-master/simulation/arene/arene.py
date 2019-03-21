@@ -41,9 +41,9 @@ class Arene:
         else:
             self.obstacles.append(Obstacle.Obstacle(x, y))
 
-    def collision(self, x, y):
-        """ Renvoie true si il peut avancer, false sinon. Test juste si le robot est au bord de l'arene, 
-            x et y correspondent à la nouvelle position du robot"""
+    """def collision(self, x, y):
+        #Renvoie true si il peut avancer, false sinon. Test juste si le robot est au bord de l'arene, 
+        #   x et y correspondent à la nouvelle position du robot
         if(x<0 or y<0 or x>self.taille or y>self.taille):
             return False
         u_robot = self.robot.direction[0]+self.robot.longueur/2
@@ -57,7 +57,22 @@ class Arene:
         if(a[0]<0 or b[0]<0 or c[0]<0 or d[0]<0 or a[1]<0 or b[1]<0 or c[1]<0 or d[1]<0 or a[0]>self.taille or b[0]>self.taille or c[0]>self.taille or d[0]>self.taille or a[1]>self.taille or b[1]>self.taille or c[1]>self.taille or d[1]>self.taille):
             return False
         else :
-            return True
+            return True"""
+        
+    def collision(self):
+        res=self.robot.avance_vers()
+        for i in range(0,4):
+            for j in range(0,2):
+                if(j==0 and res[i][j]>=self.taille):
+                    return False
+                if(j==1 and res[i][j]>=self.taille):
+                    return False
+                if(j==0 and res[i][j]<=0):
+                    return False
+                if(j==1 and res[i][j]<=0):
+                    return False
+        return True
+
 
     def rotation(self,angle, v):
         """angle positif = sens des aiguille d'une montre et angle negatif = sens inverse"""

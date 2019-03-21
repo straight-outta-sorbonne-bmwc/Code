@@ -17,7 +17,8 @@ def distance(a,b): #calcule la distance entre 2 points, prend en paramètre 2 po
 def calculvecteur(a, b): #calcule les coordonnées du vecteur ab, prend paramètre 2 points de la forme (x, y)
     u=b[0]-a[0]
     v=b[1]-a[1]
-    return u,v #retourne les coordonnés du vecteur ab sous la forme d'un tuple
+    l=[u,v]
+    return l #retourne les coordonnés du vecteur ab sous la forme d'un tuple
 
 def normevecteur(a): #calcule la norme du vecteur a, prend en paramètre les coordonnées d'un vecteur de la forme (x, y)
     return round(math.sqrt(a[0]*a[0]+a[1]*a[1]), 2) #retourne le résultat arrondie à 2 chiffres après la virgule
