@@ -1,12 +1,14 @@
 import numpy as np
 import math
 import random
+import time
 
 class Arene:
     obstacles = []      # liste d'obstacles
     def __init__(self, robot):
         self.taille=1000        # la taille de l'arene est fixe maintenant comme sa pas de prise de tête
         self.robot=robot
+        self.stop = False
     
     def lecture_fichier(self,fichier):
         if  not (fichier[-1]=='l' and fichier[-2]=='k' and fichier[-3]=='p'):
@@ -74,13 +76,13 @@ class Arene:
         return True
 
 
-    def rotation(self,angle, v):
-        """angle positif = sens des aiguille d'une montre et angle negatif = sens inverse"""
+    """def rotation(self,angle, v):
+        #angle positif = sens des aiguille d'une montre et angle negatif = sens inverse
         vx, vy=v[0], v[1]
         vtemp = 0.0
         vtemp = round(v[0] * math.cos(math.radians(angle)) - vy * math.sin(math.radians(angle)))
         vy = round(- v[0] * math.sin(math.radians(angle)) + vy * math.cos(math.radians(angle)))
-        return (vtemp, vy)
+        return (vtemp, vy)"""
     
     
     def est_vide(self,x,y):
@@ -89,3 +91,12 @@ class Arene:
                 return False
             else:
                 return True
+
+    def update(self):
+        angle=random.randint(0,180)
+        time.sleep(0.02)
+        if (self.collision()):
+            self.robot.avance_vers()
+        else :
+            angle=random.randint(0,180)
+            self.robot.rotationDroite(angle)
