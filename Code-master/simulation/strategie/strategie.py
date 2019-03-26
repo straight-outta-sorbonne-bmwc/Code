@@ -49,7 +49,7 @@ class strategie_tourner_gauche:
 		self.robot.offset_motor_encode(self.robot.MOTOR_LEFT,self.robot.get_motor_position()[0])
 		self.robot.offset_motor_encode(self.robot.MOTOR_RIGHT,self.robot.get_motor_position()[1])
 
-	def uptdate(self):
+	def update(self):
 		if self.stop():
 			self.robot.set_motor_dps(self.robot.MOTOR_LEFT+self.robot.MOTOR_RIGHT,0)
 			return
