@@ -58,7 +58,32 @@ class strategie_tourner_gauche:
 
 	def stop(self):
 		l,r=l,r=self.robot.get_motor_position
-		res = r*((self.robot.WHEEL_BASE_WIDTH*2*math.pi)/360) >= 90*((self.robot.WHEEL_BASE_WIDTH*2*math.pi)/360)
+		res = r*((self.robot.WHEEL_BASE_WIDTH*2*math.pi)/360) >= angle*((self.robot.WHEEL_BASE_WIDTH*2*math.pi)/360)
+		if res :
+			self.robot.set_motor_dps(self.robot.MOTOR_LEFT+self.robot.MOTOR_RIGHT,0)
+		return res
+
+
+class strategie_tourner_droite:
+	def __init__(self, angle, robot, vitesse):
+		self.angle=angle
+		self.robot=robot
+		self.vitesse=vitesse
+
+	def start(self):
+		self.robot.offset_motor_encode(self.robot.MOTOR_LEFT,self.robot.get_motor_position()[0])
+		self.robot.offset_motor_encode(self.robot.MOTOR_RIGHT,self.robot.get_motor_position()[1])
+
+	def update(self):
+		if self.stop():
+			self.robot.set_motor_dps(self.robot.MOTOR_LEFT+self.robot.MOTOR_RIGHT,0)
+			return
+		self.robot.set_motor_dps(self.robot.MOTOR_LEFT, self.vitesse)
+		self.robot.set_motor_dps(self.robot.MOTOR_RIGHT, 0)
+
+	def stop(self):
+		l,r=l,r=self.robot.get_motor_position
+		res = r*((self.robot.WHEEL_BASE_WIDTH*2*math.pi)/360) >= angle*((self.robot.WHEEL_BASE_WIDTH*2*math.pi)/360)
 		if res :
 			self.robot.set_motor_dps(self.robot.MOTOR_LEFT+self.robot.MOTOR_RIGHT,0)
 		return res
