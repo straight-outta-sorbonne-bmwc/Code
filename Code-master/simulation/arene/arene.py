@@ -93,10 +93,21 @@ class Arene:
                 return True
 
     def update(self):
-        angle=random.randint(0,180)
-        time.sleep(0.02)
-        if (self.collision()):
-            self.robot.avance_vers()
-        else :
-            angle=random.randint(0,180)
-            self.robot.rotationDroite(angle)
+        # angle=random.randint(0,180)
+        # time.sleep(0.02)
+        # if (self.collision()):
+        #     self.robot.avance_vers()
+        # else :
+        #     angle=random.randint(0,180)
+        #     self.robot.rotationDroite(angle)
+        dt=time.time()-self.lasttime
+        if self.robot.motor_dps_droit==self.robot.motor_dps_gauche :
+            
+            self.robot.x=self.robot.x+self.robot.dir[0]*(dt*self.robot.motor_dps_gauche*((self.robot.WHEEL_DIAMETER*math.pi)/360))
+            self.robot.y=self.robot.y+self.robot.dir[1]*(dt*self.robot.motor_dps_gauche*((self.robot.WHEEL_DIAMETER*math.pi)/360))
+            self.robot.ptv=[self.robot.x+(self.robot.longueur/2), self.robot.y]
+            
+            self.robot.motor_pos_droit+=dt*self.robot.motor_dps_droit
+            self.robot.motor_pos_gauche+=dt*self.robot.motor_dps_gauche            
+
+        self.lasttime=time.time()
