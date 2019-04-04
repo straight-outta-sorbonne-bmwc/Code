@@ -29,7 +29,4 @@ time.sleep(1)
 # 	strat.update()
 # 	time.sleep(0.2)
 
-
-
-
-
+ 	

@@ -9,6 +9,7 @@ class Arene:
         self.taille=1000        # la taille de l'arene est fixe maintenant comme sa pas de prise de tête
         self.robot=robot
         self.stop = False
+        self.lasttime=time.time()
     
     def lecture_fichier(self,fichier):
         if  not (fichier[-1]=='l' and fichier[-2]=='k' and fichier[-3]=='p'):

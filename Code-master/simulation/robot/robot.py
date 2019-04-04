@@ -2,6 +2,7 @@ from . import calcul
 import math
 import time
     
+
 class Robot:
     WHEEL_DROIT = 1
     WHEEL_GAUCHE = 2
@@ -108,4 +109,3 @@ class Robot:
         if port==self.MOTOR_RIGHT+self.MOTOR_LEFT:
             self.offset_droit+=offset
             self.offset_gauche+=offset
-
