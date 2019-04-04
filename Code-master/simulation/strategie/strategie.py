@@ -114,7 +114,8 @@ class strategie_carre:
 	def update(self):
 		if self.stop():
 			self.robot.set_motor_dps(self.robot.MOTOR_LEFT+self.robot.MOTOR_RIGHT,0)
-			return	
+			return
+		
 		self.robot.set_motor_dps(self.robot.MOTOR_LEFT, self.vitesse)
 		self.robot.set_motor_dps(self.robot.MOTOR_RIGHT, 0)
 

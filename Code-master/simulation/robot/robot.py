@@ -101,7 +101,7 @@ class Robot:
         return [self.motor_pos_gauche, self.motor_pos_droit]
 
 
-    def offset_motor_encode(self, port, offset):
+    def offset_motor_encoder(self, port, offset):
         if port==self.MOTOR_LEFT:
             self.offset_gauche+=offset 
         if port==self.MOTOR_RIGHT:
