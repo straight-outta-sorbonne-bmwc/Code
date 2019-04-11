@@ -1,4 +1,4 @@
-# coding: utf-8
+#coding: utf-8
 
 import numpy as np
 import math
@@ -109,14 +109,17 @@ class Arene:
         
         if self.robot.motor_dps_droit==self.robot.motor_dps_gauche :
             distance=(self.robot.motor_pos_gauche*(self.robot.WHEEL_CIRCUMFERENCE)/360)-self.lastd
+            
             self.robot.x=self.robot.x+self.robot.dir[0]*(dt*self.robot.motor_dps_gauche*((self.robot.WHEEL_DIAMETER*math.pi)/360))
             self.robot.y=self.robot.y+self.robot.dir[1]*(dt*self.robot.motor_dps_gauche*((self.robot.WHEEL_DIAMETER*math.pi)/360))
-            self.robot.ptv=[self.robot.x+(self.robot.longueur/2), self.robot.y]
+            self.robot.ptv=[(self.robot.b[0]+self.robot.c[0])/2, (self.robot.b[1]+self.robot.c[1])/2]
 
-            self.robot.a=[self.robot.x-(self.robot.longueur/2),self.robot.y+(self.robot.largeur/2)]
-            self.robot.b=[self.robot.x+(self.robot.longueur/2),self.robot.y+(self.robot.largeur/2)]
-            self.robot.c=[self.robot.x+(self.robot.longueur/2),self.robot.y-(self.robot.largeur/2)]
-            self.robot.d=[self.robot.x-(self.robot.longueur/2),self.robot.y-(self.robot.largeur/2)]
+            self.robot.a=[self.robot.a[0]+self.robot.dir[0]*(dt*self.robot.motor_dps_gauche*((self.robot.WHEEL_DIAMETER*math.pi)/360)), self.robot.a[1]+self.robot.dir[1]*(dt*self.robot.motor_dps_gauche*((self.robot.WHEEL_DIAMETER*math.pi)/360))]
+            self.robot.b=[self.robot.b[0]+self.robot.dir[0]*(dt*self.robot.motor_dps_gauche*((self.robot.WHEEL_DIAMETER*math.pi)/360)), self.robot.b[1]+self.robot.dir[1]*(dt*self.robot.motor_dps_gauche*((self.robot.WHEEL_DIAMETER*math.pi)/360))]
+            self.robot.c=[self.robot.c[0]+self.robot.dir[0]*(dt*self.robot.motor_dps_gauche*((self.robot.WHEEL_DIAMETER*math.pi)/360)), self.robot.c[1]+self.robot.dir[1]*(dt*self.robot.motor_dps_gauche*((self.robot.WHEEL_DIAMETER*math.pi)/360))]
+            self.robot.d=[self.robot.d[0]+self.robot.dir[0]*(dt*self.robot.motor_dps_gauche*((self.robot.WHEEL_DIAMETER*math.pi)/360)), self.robot.d[1]+self.robot.dir[1]*(dt*self.robot.motor_dps_gauche*((self.robot.WHEEL_DIAMETER*math.pi)/360))]   
+                 
+
 
             self.robot.motor_pos_droit+=dt*self.robot.motor_dps_droit
             self.robot.motor_pos_gauche+=dt*self.robot.motor_dps_gauche            
@@ -126,24 +129,19 @@ class Arene:
         if self.robot.motor_dps_droit==0 and self.robot.motor_dps_gauche>0:
             distance=(self.robot.motor_pos_gauche*(self.robot.WHEEL_CIRCUMFERENCE)/360)-self.lastd
             angle=distance/((self.robot.WHEEL_BASE_WIDTH*2*math.pi)/360)
-            
-        
             self.robot.rotationDroite(angle) 
-            #self.robot.ptv=[(self.robot.b[0]+self.robot.c[0])/2, (self.robot.b[1]+self.robot.c[1]/2)]
             self.robot.motor_pos_gauche+=dt*self.robot.motor_dps_gauche
         
 
         if self.robot.motor_dps_droit>0 and self.robot.motor_dps_gauche==0:
             distance=(self.robot.motor_pos_droit*(self.robot.WHEEL_CIRCUMFERENCE)/360)-self.lastd
             angle=distance/((self.robot.WHEEL_BASE_WIDTH*2*math.pi)/360)
-            
-        
             self.robot.rotationGauche(angle) 
-            #self.robot.ptv=[(self.robot.b[0]+self.robot.c[0])/2, (self.robot.b[1]+self.robot.c[1]/2)]
             self.robot.motor_pos_droit+=dt*self.robot.motor_dps_droit
         
         self.lastd+=distance
         self.lasttime=time.time()
             
         
+            
             
