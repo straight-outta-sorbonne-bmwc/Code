@@ -122,5 +122,5 @@ class strategie_carre:
 			self.liste[self.nb_tour%2].update()
 
 	def stop(self):
-		return self.nb_tour>=8
+		return self.nb_tour>=7
 		
