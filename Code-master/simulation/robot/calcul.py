@@ -24,8 +24,8 @@ def normevecteur(a): #calcule la norme du vecteur a, prend en paramètre les coo
     return round(math.sqrt(a[0]*a[0]+a[1]*a[1]), 2) #retourne le résultat arrondie à 2 chiffres après la virgule
 
 def normalize(a): #normalise un vecteur et prend en paramètre les coordonnées d'un vecteur sous la forme (x, y)
-    n=normevecteur(a)/4
-    return [round(a[0]/n,2), round(a[1]/n,2)] #retourne un tuple
+    n=normevecteur(a)/1
+    return [round(a[0]/n,1), round(a[1]/n,1)] #retourne un tuple
 
 def angle2vect(a,b): #calcule l'angle entre le vecteur a et b prend en paramétre les coordonnées des vecteurs sous la forme (x, y)
     in1=a[0]*b[0]+a[1]*b[1]
