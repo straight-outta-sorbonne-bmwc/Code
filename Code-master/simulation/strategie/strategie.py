@@ -104,7 +104,7 @@ class strategie_carre:
 	def __init__(self,robot,vitesse):
 		self.robot=robot
 		self.vitesse=vitesse
-		self.liste=[strategie_avance(100,self.robot,self.vitesse),strategie_tourner_droite(90,self.robot,self.vitesse)]
+		self.liste=[strategie_avance(200,self.robot,self.vitesse),strategie_tourner_droite(90,self.robot,self.vitesse)]
 		self.nb_tour=0
 		
 	def start(self):
