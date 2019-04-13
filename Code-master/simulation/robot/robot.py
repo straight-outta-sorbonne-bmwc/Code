@@ -2,7 +2,6 @@ from . import calcul
 import math
 import time
     
-
 class Robot:
     WHEEL_DROIT = 1
     WHEEL_GAUCHE = 2
@@ -21,7 +20,7 @@ class Robot:
        
         #c=calcul.calculvecteur([self.x,self.y], self.ptv)
         #self.direction=[c[0], c[1]]#position du vecteur
-        self.dir=[1,0]
+       
         self.MOTOR_LEFT= 1
         self.MOTOR_RIGHT = 2
         self.motor_dps_droit=0
@@ -36,6 +35,7 @@ class Robot:
         self.c=[self.x+(self.longueur/2),self.y-(self.largeur/2)]
         self.d=[self.x-(self.longueur/2),self.y-(self.largeur/2)]
         self.ptv=[(self.b[0]+self.c[0])/2, (self.b[1]+self.c[1])/2]
+        self.dir=calcul.normalize([self.ptv[0]-self.x, self.ptv[1]-self.y])
        
    
     
@@ -63,9 +63,7 @@ class Robot:
         #ym=self.direction.v-self.y
         #self.u= round(xm * math.cos(math.radians(angle)) + ym * math.sin(math.radians(angle)) + self.x,2)
         #self.v = round(- xm * math.sin(math.radians(angle)) + ym * math.cos(math.radians(angle))+ self.y,2)
-        c=calcul.rotatePoint(self.dir, (0,0), angle*(-1))
-        self.dir=c
-        print(self.dir)
+      
         x,y = calcul.rotatePoint((self.x,self.y), self.b, angle*(-1))
         self.x=x
         self.y=y
@@ -78,14 +76,13 @@ class Robot:
         self.c=calcul.rotatePoint(self.c, self.b, angle*(-1))
         self.d=calcul.rotatePoint(self.d, self.b, angle*(-1))
         self.ptv=[(self.b[0]+self.c[0])/2, (self.b[1]+self.c[1])/2]
-        print(self.dir)
+        self.dir=calcul.normalize([self.ptv[0]-self.x, self.ptv[1]-self.y])
 
     def rotationGauche(self,angle):
         #xm=self.direction.u-self.x
         #ym=self.direction.v-self.y
         #self.u= round(xm * math.cos(math.radians(angle)) + ym * math.sin(math.radians(angle)) + self.x,2)
         #self.v = round(- xm * math.sin(math.radians(angle)) + ym * math.cos(math.radians(angle))+ self.y,2)
-        self.dir=calcul.rotatePoint(self.dir, (0,0), angle*(-1))
         x,y = calcul.rotatePoint((self.x,self.y), self.c, angle*(1))
         self.x=x
         self.y=y
@@ -98,6 +95,7 @@ class Robot:
         #self.c=calcul.rotatePoint(self.c, self.c, angle*(-1))
         self.d=calcul.rotatePoint(self.d, self.c, angle*(1))
         self.ptv=[(self.b[0]+self.c[0])/2, (self.b[1]+self.c[1])/2]
+        self.dir=calcul.normalize([self.ptv[0]-self.x, self.ptv[1]-self.y])
 
         
     '''
