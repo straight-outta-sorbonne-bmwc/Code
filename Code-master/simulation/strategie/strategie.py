@@ -124,3 +124,27 @@ class strategie_carre:
 	def stop(self):
 		return self.nb_tour>=7
 		
+
+class strategie_triangle:
+	def __init__(self,robot,vitesse):
+		self.robot=robot
+		self.vitesse=vitesse
+		self.liste=[strategie_avance(200,self.robot,self.vitesse),strategie_tourner_droite(120,self.robot,self.vitesse)]
+		self.nb_tour=0
+		
+	def start(self):
+		self.liste[self.nb_tour%2].start()
+
+	def update(self):
+		if self.stop():
+			return
+		
+		if self.liste[self.nb_tour%2].stop():
+			self.nb_tour+=1
+			self.liste[self.nb_tour%2].start()
+		
+		else:
+			self.liste[self.nb_tour%2].update()
+
+	def stop(self):
+		return self.nb_tour>=5
