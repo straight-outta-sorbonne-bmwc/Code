@@ -122,5 +122,109 @@ class strategie_carre:
 			self.liste[self.nb_tour%2].update()
 
 	def stop(self):
-		return self.nb_tour>=7
+		return self.nb_tour>=8
 		
+class strategie_triangle:
+	def __init__(self,robot,vitesse):
+		self.robot=robot
+		self.vitesse=vitesse
+		self.liste=[strategie_avance(100,self.robot,self.vitesse),strategie_tourner_droite(120,self.robot,self.vitesse)]
+		self.nb_tour=0
+		print('position x du robot=',self.robot.x,' position y du robot=', self.robot.y)
+		
+	def start(self):
+		self.liste[self.nb_tour%2].start()
+
+	def update(self):
+		if self.stop():
+			return
+		
+		if self.liste[self.nb_tour%2].stop():
+			self.nb_tour+=1
+			self.liste[self.nb_tour%2].start()
+		
+		else:
+			self.liste[self.nb_tour%2].update()
+		print('position x du robot=',self.robot.x,' position y du robot=', self.robot.y)
+		
+	def stop(self):
+		return self.nb_tour>=6
+
+
+class strategie_cercle:
+	def __init__(self, distance, robot, vitesse):
+		self.distance=distance
+		self.robot=robot
+		self.vitesse = vitesse
+
+	def start(self):
+		self.robot.offset_motor_encoder(self.robot.MOTOR_LEFT,self.robot.get_motor_position()[0])
+		self.robot.offset_motor_encoder(self.robot.MOTOR_RIGHT,self.robot.get_motor_position()[1])
+
+	def update(self):
+		if self.stop():
+			self.robot.set_motor_dps(self.robot.MOTOR_LEFT+self.robot.MOTOR_RIGHT,0)
+			return
+		self.robot.set_motor_dps(self.robot.MOTOR_LEFT, self.vitesse)
+		self.robot.set_motor_dps(self.robot.MOTOR_RIGHT, 200)
+		
+	def stop(self):
+		l,r=self.robot.get_motor_position()
+		res = l*(self.robot.WHEEL_CIRCUMFERENCE/360) >= self.distance
+		if res: 
+			self.robot.set_motor_dps(self.robot.MOTOR_LEFT+self.robot.MOTOR_RIGHT,0)
+		return res
+
+
+class strategie_cercle2:
+	def __init__(self,robot,vitesse):
+		self.robot=robot
+		self.vitesse=vitesse
+		self.liste=[strategie_avance(2,self.robot,self.vitesse),strategie_tourner_droite(30,self.robot,self.vitesse)]
+		self.nb_tour=0
+		
+	def start(self):
+		self.liste[self.nb_tour%2].start()
+
+	def update(self):
+		if self.stop():
+			return
+		
+		if self.liste[self.nb_tour%2].stop():
+			self.nb_tour+=1
+			self.liste[self.nb_tour%2].start()
+		
+		else:
+			self.liste[self.nb_tour%2].update()
+
+	def stop(self):
+		return self.nb_tour>=120
+		
+class strategie_polygone:
+	def __init__(self,robot,vitesse,n):
+		self.robot=robot
+		self.vitesse=vitesse
+		self.n=n
+		self.angle_poly=(360/self.n)
+		self.cote_poly=300/self.n
+		self.liste=[strategie_avance(self.cote_poly,self.robot,self.vitesse),strategie_tourner_droite(self.angle_poly,self.robot,self.vitesse)]
+		self.nb_tour=0
+
+				
+	def start(self):
+		self.liste[self.nb_tour%2].start()
+
+	def update(self):
+		if self.stop():
+			return
+		
+		if self.liste[self.nb_tour%2].stop():
+			self.nb_tour+=1
+			self.liste[self.nb_tour%2].start()
+		
+		else:
+			self.liste[self.nb_tour%2].update()
+		print('position x du robot=',self.robot.x,' position y du robot=', self.robot.y)
+		
+	def stop(self):
+		return self.nb_tour>=self.n*2
