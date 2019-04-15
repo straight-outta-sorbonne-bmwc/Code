@@ -157,3 +157,12 @@ class Robot:
             self.motor_pos_gauche=0
 
 
+    def get_distance(self):
+        distance=0
+        a,b=self.x, self.y
+        while  a>0 and b>0 and a<1000 and b<1000:
+            a=a+self.dir[0]
+            b=b+self.dir[1]
+            distance=distance+calcul.distance((a,b), (a+self.dir[0], b+self.dir[1]))
+        print(distance)
+        return distance
