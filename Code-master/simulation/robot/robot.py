@@ -108,7 +108,7 @@ class Robot:
         self.b=calcul.rotatePoint(self.b, [self.x,self.y], angle)
         self.c=calcul.rotatePoint(self.c, [self.x,self.y], angle)
         self.d=calcul.rotatePoint(self.d, [self.x,self.y], angle)
-    
+    '''
     def avance_vers(self):
         a=[self.x, self.y]
         ptvbis=self.ptv
@@ -128,7 +128,7 @@ class Robot:
         #self.d[1]=self.d[1]+vnor[1]
         l=[self.a,self.b,self.c,self.a]
         return l
-'''
+
     def set_motor_dps(self, port, dps):
         if (port==self.MOTOR_LEFT):
             self.motor_dps_gauche=dps
@@ -155,5 +155,4 @@ class Robot:
             self.offset_gauche+=offset
             self.motor_pos_droit=0
             self.motor_pos_gauche=0
-
 
