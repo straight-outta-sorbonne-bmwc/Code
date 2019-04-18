@@ -14,7 +14,7 @@ class AffichageTK(object):
     
     def affiche_obstacle(self):
         for i in self.arene.obstacles:
-            self.can.create_rectangle(i.x, i.y, i.x+i.taille, i.y+i.taille,fill='yellow')
+            self.can.create_rectangle(i.x, i.y, i.x+i.taille, i.y+i.taille,fill='#000fff000')
 
     
 
@@ -44,14 +44,12 @@ class AffichageTK(object):
         self.root.destroy()
     
     def affiche_robot(self):
-        #print(self.robot.x,self.robot.y)
-        #self.r = self.can.create_rectangle(self.robot.y, self.robot.x, self.robot.y+self.robot.longueur, self.robot.x+self.robot.largeur, fill="black")
-        #self.r=self.can.create_rectangle(self.robot.x-(self.robot.longueur/2), self.robot.y-(self.robot.longueur/2), self.robot.x+(self.robot.longueur/2), self.robot.y+(self.robot.longueur/2), fill="green")
+        
         self.r=self.can.create_polygon(self.robot.a[0],self.robot.a[1],self.robot.b[0],self.robot.b[1],self.robot.c[0],self.robot.c[1],self.robot.d[0],self.robot.d[1],fill="black")
         self.l=self.can.create_line(self.robot.x, self.robot.y, self.robot.ptv[0] , self.robot.ptv[1], arrow='last', fill='red')
         self.t=self.can.create_line(self.robot.ptv[0] , self.robot.ptv[1], self.robot.ptv[0]+1 , self.robot.ptv[1]+1, fill='green')
         for i in self.arene.obstacles:
-            self.can.create_rectangle(i.x-i.taille/2, i.y-i.taille/2, i.x+i.taille/2, i.y+i.taille/2,fill='yellow')
+            self.can.create_rectangle(i.x-i.taille/2, i.y-i.taille/2, i.x+i.taille/2, i.y+i.taille/2,fill='maroon2')
            
         self.can.update()
     def deleterobot(self):
@@ -60,16 +58,3 @@ class AffichageTK(object):
         if self.r: 
             self.can.delete(self.r)
         
-    """def main(self):
-        angle=random.randint(0,180)
-        self.robot.rotationDroite(angle)
-        while(True):
-            time.sleep(0.02)
-            self.affiche_robot()
-            if (self.arene.collision()):
-                self.robot.avance_vers()
-            else :
-                angle=random.randint(0,180)
-                self.robot.rotationDroite(angle)
-            self.can.update()
-            self.deleterobot()"""

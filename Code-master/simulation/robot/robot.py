@@ -73,29 +73,7 @@ class Robot:
         self.dir=calcul.normalize([self.ptv[0]-self.x, self.ptv[1]-self.y])
 
         
-    '''
-
-    
-    def avance_vers(self):
-        a=[self.x, self.y]
-        ptvbis=self.ptv
-        vect=calcul.calculvecteur(a, ptvbis)
-        vnor=calcul.normalize(vect)
-        self.x=a[0]+vnor[0]
-        self.y=a[1]+vnor[1]
-        self.ptv[0]=ptvbis[0]+vnor[0]
-        self.ptv[1]=ptvbis[1]+vnor[1]
-        self.a[0]=self.a[0]+vnor[0]
-        self.a[1]=self.a[1]+vnor[1]
-        self.b[0]=self.b[0]+vnor[0]
-        #self.b[1]=self.b[1]+vnor[1]
-        #self.c[0]=self.c[0]+vnor[0]
-        #self.c[1]=self.c[1]+vnor[1]
-        #self.d[0]=self.d[0]+vnor[0]
-        #self.d[1]=self.d[1]+vnor[1]
-        l=[self.a,self.b,self.c,self.a]
-        return l
-'''
+ 
     def set_motor_dps(self, port, dps):
         if (port==self.MOTOR_LEFT):
             self.motor_dps_gauche=dps
