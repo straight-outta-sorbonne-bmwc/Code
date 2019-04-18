@@ -15,6 +15,7 @@ class AffichageTK(object):
     def affiche_obstacle(self):
         for i in self.arene.obstacles:
             self.can.create_rectangle(i.x, i.y, i.x+i.taille, i.y+i.taille,fill='yellow')
+
     
 
     def start_affichage(self):
@@ -41,12 +42,17 @@ class AffichageTK(object):
         self.arene.stop = True
         time.sleep(1)
         self.root.destroy()
+    
     def affiche_robot(self):
         #print(self.robot.x,self.robot.y)
         #self.r = self.can.create_rectangle(self.robot.y, self.robot.x, self.robot.y+self.robot.longueur, self.robot.x+self.robot.largeur, fill="black")
         #self.r=self.can.create_rectangle(self.robot.x-(self.robot.longueur/2), self.robot.y-(self.robot.longueur/2), self.robot.x+(self.robot.longueur/2), self.robot.y+(self.robot.longueur/2), fill="green")
         self.r=self.can.create_polygon(self.robot.a[0],self.robot.a[1],self.robot.b[0],self.robot.b[1],self.robot.c[0],self.robot.c[1],self.robot.d[0],self.robot.d[1],fill="black")
         self.l=self.can.create_line(self.robot.x, self.robot.y, self.robot.ptv[0] , self.robot.ptv[1], arrow='last', fill='red')
+        self.t=self.can.create_line(self.robot.ptv[0] , self.robot.ptv[1], self.robot.ptv[0]+1 , self.robot.ptv[1]+1, fill='green')
+        for i in self.arene.obstacles:
+            self.can.create_rectangle(i.x, i.y, i.x+i.taille, i.y+i.taille,fill='yellow')
+           
         self.can.update()
     def deleterobot(self):
         if self.l:

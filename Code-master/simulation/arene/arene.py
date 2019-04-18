@@ -4,15 +4,17 @@ import numpy as np
 import math
 import random
 import time
+from . import obstacle
 
 class Arene:
     obstacles = []      # liste d'obstacles
     def __init__(self, robot):
-        self.taille=1000        # la taille de l'arene est fixe maintenant comme sa pas de prise de tête
+        self.taille=1500        # la taille de l'arene est fixe maintenant comme sa pas de prise de tête
         self.robot=robot
         self.stop = False
         self.lasttime=time.time()
         self.lastd=0
+        self.robot.arene=self
    
 
     def lecture_fichier(self,fichier):
@@ -46,7 +48,8 @@ class Arene:
         elif(y<0 or y>self.taille-1):
             print("Erreur sur la valeur de y") 
         else:
-            self.obstacles.append(Obstacle.Obstacle(x, y))
+            self.obstacles.append(obstacle.Obstacle(x, y))
+
 
     """def collision(self, x, y):
         #Renvoie true si il peut avancer, false sinon. Test juste si le robot est au bord de l'arene, 
@@ -66,20 +69,17 @@ class Arene:
         else :
             return True"""
         
-    def collision(self):
-        res=self.robot.avance_vers()
-        for i in range(0,4):
-            for j in range(0,2):
-                if(j==0 and res[i][j]>=self.taille):
-                    return False
-                if(j==1 and res[i][j]>=self.taille):
-                    return False
-                if(j==0 and res[i][j]<=0):
-                    return False
-                if(j==1 and res[i][j]<=0):
-                    return False
-        return True
+    def get_distance(self):
+        x=self.robot.ptv[0]
+        y=self.robot.ptv[1]
+        for i in range (5, 8000):
+            for j in self.obstacles:
+                if ((x+self.robot.dir[0]*i <= j.x+j.taille/2 and x+self.robot.dir[0]*i >= j.x-j.taille/2) and (y+self.robot.dir[1]*i <= j.y+j.taille/2 and x+self.robot.dir[1]*i>= j.y-j.taille/2)):
+                    return i
+            if x+self.robot.dir[0]*i >= self.taille  or y+self.robot.dir[1] >= self.taille:
+                return i
 
+        return 8190
 
     """def rotation(self,angle, v):
         #angle positif = sens des aiguille d'une montre et angle negatif = sens inverse
@@ -89,22 +89,11 @@ class Arene:
         vy = round(- v[0] * math.sin(math.radians(angle)) + vy * math.cos(math.radians(angle)))
         return (vtemp, vy)"""
     
-    
-    def est_vide(self,x,y):
-        for i in range(len(self.obstacles)):
-            if ((self.obstacles[i].x==x) and (self.obstacles[i].y==y) or (self.robot.x==x and self.robot.y==y)):
-                return False
-            else:
-                return True
+
+
 
     def update(self):
-        # angle=random.randint(0,180)
-        # time.sleep(0.02)
-        # if (self.collision()):
-        #     self.robot.avance_vers()
-        # else :
-        #     angle=random.randint(0,180)
-        #     self.robot.rotationDroite(angle)
+
         dt=time.time()-self.lasttime
         
         if self.robot.motor_dps_droit==self.robot.motor_dps_gauche :

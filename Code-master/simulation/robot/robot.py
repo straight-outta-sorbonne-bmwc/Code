@@ -1,7 +1,8 @@
 from . import calcul
 import math
 import time
-    
+
+
 class Robot:
     WHEEL_DROIT = 1
     WHEEL_GAUCHE = 2
@@ -10,17 +11,13 @@ class Robot:
     WHEEL_DIAMETER           = 66.5 #  diametre de la roue (mm)
     WHEEL_BASE_CIRCUMFERENCE = WHEEL_BASE_WIDTH * math.pi # perimetre du cercle de rotation (mm)
     WHEEL_CIRCUMFERENCE = WHEEL_DIAMETER * math.pi # perimetre de la roue (mm)
+    
     def __init__(self,x,y,longueur,largeur):
         self.x=x
         self.y=y
         self.longueur=longueur
         self.largeur=largeur
         self.dt=time.time()
-        #self.ptv=[self.x+(self.longueur/2), self.y]
-       
-        #c=calcul.calculvecteur([self.x,self.y], self.ptv)
-        #self.direction=[c[0], c[1]]#position du vecteur
-       
         self.MOTOR_LEFT= 1
         self.MOTOR_RIGHT = 2
         self.motor_dps_droit=0
@@ -36,9 +33,7 @@ class Robot:
         self.d=[self.x-(self.longueur/2),self.y-(self.largeur/2)]
         self.ptv=[(self.b[0]+self.c[0])/2, (self.b[1]+self.c[1])/2]
         self.dir=calcul.normalize([self.ptv[0]-self.x, self.ptv[1]-self.y])
-       
-   
-    
+        self.arene=None
     '''
     @property
     def a(self):
@@ -59,55 +54,27 @@ class Robot:
         return rotatePoint([self.x-(self.longueur/2),self.y-(self.largeur/2)], (self.x, self.y), angle2vect(self.ddepart, v))
     '''
     def rotationDroite(self,angle):
-        #xm=self.direction.u-self.x
-        #ym=self.direction.v-self.y
-        #self.u= round(xm * math.cos(math.radians(angle)) + ym * math.sin(math.radians(angle)) + self.x,2)
-        #self.v = round(- xm * math.sin(math.radians(angle)) + ym * math.cos(math.radians(angle))+ self.y,2)
-      
         x,y = calcul.rotatePoint((self.x,self.y), self.b, angle*(-1))
         self.x=x
         self.y=y
-        #rot=calcul.rotatePoint(self.ptv, [self.x,self.y], angle*(-1))
-        #self.ptv=[rot[0],rot[1]]
-        #c=calcul.calculvecteur([self.x,self.y], self.ptv)
-        #self.direction=[c[0], c[1]]
         self.a=calcul.rotatePoint(self.a, self.b, angle*(-1))
-        #self.b=calcul.rotatePoint(self.b, self.c, angle*(-1))
         self.c=calcul.rotatePoint(self.c, self.b, angle*(-1))
         self.d=calcul.rotatePoint(self.d, self.b, angle*(-1))
         self.ptv=[(self.b[0]+self.c[0])/2, (self.b[1]+self.c[1])/2]
         self.dir=calcul.normalize([self.ptv[0]-self.x, self.ptv[1]-self.y])
 
     def rotationGauche(self,angle):
-        #xm=self.direction.u-self.x
-        #ym=self.direction.v-self.y
-        #self.u= round(xm * math.cos(math.radians(angle)) + ym * math.sin(math.radians(angle)) + self.x,2)
-        #self.v = round(- xm * math.sin(math.radians(angle)) + ym * math.cos(math.radians(angle))+ self.y,2)
-        x,y = calcul.rotatePoint((self.x,self.y), self.c, angle*(1))
         self.x=x
         self.y=y
-        #rot=calcul.rotatePoint(self.ptv, [self.x,self.y], angle*(-1))
-        #self.ptv=[rot[0],rot[1]]
-        #c=calcul.calculvecteur([self.x,self.y], self.ptv)
-        #self.direction=[c[0], c[1]]
         self.a=calcul.rotatePoint(self.a, self.c, angle*(1))
         self.b=calcul.rotatePoint(self.b, self.c, angle*(1))
-        #self.c=calcul.rotatePoint(self.c, self.c, angle*(-1))
         self.d=calcul.rotatePoint(self.d, self.c, angle*(1))
         self.ptv=[(self.b[0]+self.c[0])/2, (self.b[1]+self.c[1])/2]
         self.dir=calcul.normalize([self.ptv[0]-self.x, self.ptv[1]-self.y])
 
         
     '''
-    def rotationGauche(self,angle):
-        rot=calcul.rotatePoint(self.ptv, (self.x,self.y), angle)
-        self.ptv=[rot[0],rot[1]]
-        c=calcul.calculvecteur([self.x,self.y], self.ptv)
-        self.direction=[c[0], c[1]]
-        self.a=calcul.rotatePoint(self.a, [self.x,self.y], angle)
-        self.b=calcul.rotatePoint(self.b, [self.x,self.y], angle)
-        self.c=calcul.rotatePoint(self.c, [self.x,self.y], angle)
-        self.d=calcul.rotatePoint(self.d, [self.x,self.y], angle)
+
     
     def avance_vers(self):
         a=[self.x, self.y]
@@ -155,5 +122,8 @@ class Robot:
             self.offset_gauche+=offset
             self.motor_pos_droit=0
             self.motor_pos_gauche=0
+            
+    def get_distance(self):
+        return self.arene.get_distance()
 
 

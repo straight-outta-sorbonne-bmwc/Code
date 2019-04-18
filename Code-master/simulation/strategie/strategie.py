@@ -34,7 +34,7 @@ class strategie_avance:
 		
 	def stop(self):
 		l,r=self.robot.get_motor_position()
-		res = l*(self.robot.WHEEL_CIRCUMFERENCE/360) >= self.distance
+		res = (l*(self.robot.WHEEL_CIRCUMFERENCE/360) >= self.distance) or (self.robot.get_distance()<= 5)
 		if res: 
 			self.robot.set_motor_dps(self.robot.MOTOR_LEFT+self.robot.MOTOR_RIGHT,0)
 		return res
@@ -63,7 +63,7 @@ class strategie_tourner_gauche:
 		l,r=self.robot.get_motor_position()
 		r_rad = r*math.pi/180
 		d = r_rad * self.robot.WHEEL_DIAMETER/2
-		res =  d >= self.distance
+		res =  d >= self.distance or (self.robot.get_distance()<= 5)
 		if res :
 			self.robot.set_motor_dps(self.robot.MOTOR_LEFT+self.robot.MOTOR_RIGHT,0)
 		return res
@@ -92,7 +92,7 @@ class strategie_tourner_droite:
 		l,r=self.robot.get_motor_position()
 		l_rad = l*math.pi/180
 		d = l_rad * self.robot.WHEEL_DIAMETER/2
-		res =  d >= self.distance
+		res =  d >= self.distance or (self.robot.get_distance()<= 5)
 
 
 		if res :
@@ -122,5 +122,5 @@ class strategie_carre:
 			self.liste[self.nb_tour%2].update()
 
 	def stop(self):
-		return self.nb_tour>=7
+		return self.nb_tour>=7 
 		
