@@ -27,15 +27,18 @@ class strategie_avance:
 		self.robot.offset_motor_encoder(self.robot.MOTOR_RIGHT,self.robot.get_motor_position()[1])
 
 	def update(self):
+
 		if self.stop():
 			self.robot.set_motor_dps(self.robot.MOTOR_LEFT+self.robot.MOTOR_RIGHT,0)
 			return
 		self.robot.set_motor_dps(self.robot.MOTOR_LEFT+self.robot.MOTOR_RIGHT, self.vitesse)
 		
 	def stop(self):
+
 		l,r=self.robot.get_motor_position()
-		res = (l*(self.robot.WHEEL_CIRCUMFERENCE/360) >= self.distance) or (self.robot.get_distance()<= 5)
-		if res: 
+		res = (l*(self.robot.WHEEL_CIRCUMFERENCE/360) >= self.distance) or (self.robot.get_distance()<=5 )
+	
+		if res:
 			self.robot.set_motor_dps(self.robot.MOTOR_LEFT+self.robot.MOTOR_RIGHT,0)
 		return res
 

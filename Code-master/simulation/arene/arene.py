@@ -36,10 +36,10 @@ class Arene:
     
     def ajouter_obstacle_aleatoire(self):
         """ la méthode ajoute 15 obstacles aléatoirement dans la liste d'obstacle"""
-        for i in range(15):
+        for i in range(5):
             u=random.randint(0,self.taille-1)
             v=random.randint(0,self.taille-1)
-            self.obstacles.append(Obstacle.Obstacle(u, v))
+            self.obstacles.append(obstacle.Obstacle(u, v))
            
 
     def add_obstacle(self, x, y):
@@ -52,18 +52,31 @@ class Arene:
 
 
         
-    def get_distance(self):
+    '''def get_distance(self):
         x=self.robot.ptv[0]
         y=self.robot.ptv[1]
         for i in range (5, 8000):
             for j in self.obstacles:
                 if ((x+self.robot.dir[0]*i <= j.x+j.taille/2 and x+self.robot.dir[0]*i >= j.x-j.taille/2) and (y+self.robot.dir[1]*i <= j.y+j.taille/2 and x+self.robot.dir[1]*i>= j.y-j.taille/2)):
+                   
+                    return i
+            if x+self.robot.dir[0]*i >= self.taille  or y+self.robot.dir[1] >= self.taille:
+                return i
+
+        return 8190'''
+
+    def get_distance(self):
+        x=self.robot.ptv[0]
+        y=self.robot.ptv[1]
+        for i in range (5, 8000):
+            for j in self.obstacles:
+                if ((abs(x+self.robot.dir[0]*i - j.x) <= j.taille/2) and (abs(y+self.robot.dir[1]*i -j.y) <= j.taille/2 )):
+                   
                     return i
             if x+self.robot.dir[0]*i >= self.taille  or y+self.robot.dir[1] >= self.taille:
                 return i
 
         return 8190
-
 
 
 
@@ -103,6 +116,12 @@ class Arene:
             self.robot.rotationGauche(angle) 
             self.robot.motor_pos_droit+=dt*self.robot.motor_dps_droit
         
+        """if self.robot.motor_dps_droit>0 or self.robot.motor_dps_gauche<0:
+            distance=(self.robot.motor_pos_droit*(self.robot.WHEEL_CIRCUMFERENCE)/360)-self.lastd
+            angle=distance/((self.robot.WHEEL_BASE_WIDTH*2*math.pi)/360)
+            self.robot.rotationGauche(angle) 
+            self.robot.motor_pos_droit+=dt*self.robot.motor_dps_droit
+           """
         self.lastd+=distance
         self.lasttime=time.time()
             

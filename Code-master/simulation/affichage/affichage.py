@@ -51,7 +51,7 @@ class AffichageTK(object):
         self.l=self.can.create_line(self.robot.x, self.robot.y, self.robot.ptv[0] , self.robot.ptv[1], arrow='last', fill='red')
         self.t=self.can.create_line(self.robot.ptv[0] , self.robot.ptv[1], self.robot.ptv[0]+1 , self.robot.ptv[1]+1, fill='green')
         for i in self.arene.obstacles:
-            self.can.create_rectangle(i.x, i.y, i.x+i.taille, i.y+i.taille,fill='yellow')
+            self.can.create_rectangle(i.x-i.taille/2, i.y-i.taille/2, i.x+i.taille/2, i.y+i.taille/2,fill='yellow')
            
         self.can.update()
     def deleterobot(self):

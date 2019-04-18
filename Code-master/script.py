@@ -2,17 +2,18 @@ from simulation import robot, affichage, arene
 from simulation import strategie
 from threading import Thread
 import time
+import math
 
 #import Robot2I013
 
 robot=robot.Robot(500, 500, 50, 50)
 arene=arene.Arene(robot)
 
-arene.add_obstacle(800,450)
+arene.ajouter_obstacle_aleatoire()
 fenetre=affichage.AffichageTK(arene, robot)
 paralelle=Thread(target=fenetre.start_affichage)
 paralelle.start()
-strat=strategie.strategie_avance(3000,robot, 200)
+strat=strategie.strategie_avance(200,robot, -200)
 thread_strat=Thread(target=strat.update)
 thread_strat.start()
 strat.start()
