@@ -51,23 +51,6 @@ class Arene:
             self.obstacles.append(obstacle.Obstacle(x, y))
 
 
-    """def collision(self, x, y):
-        #Renvoie true si il peut avancer, false sinon. Test juste si le robot est au bord de l'arene, 
-        #   x et y correspondent à la nouvelle position du robot
-        if(x<0 or y<0 or x>self.taille or y>self.taille):
-            return False
-        u_robot = self.robot.direction[0]+self.robot.longueur/2
-        v_robot = self.robot.direction[1]+self.robot.largeur/2
-        milieu = (x+u_robot, y+v_robot)
-        a = (milieu[0]+self.rotation(90, self.robot.direction)[0]+self.robot.largeur/2, milieu[1]+self.rotation(90, self.robot.direction)[1]+self.robot.largeur/2)
-        b = (milieu[0]+self.rotation(-90, self.robot.direction)[0]+self.robot.largeur/2, milieu[1]+self.rotation(-90, self.robot.direction)[1]+self.robot.largeur/2)
-        milieu = (x-u_robot, y-v_robot)
-        c = (milieu[0]+self.rotation(90, self.robot.direction)[0]+self.robot.largeur/2, milieu[1]+self.rotation(90, self.robot.direction)[1]+self.robot.largeur/2)
-        d = (milieu[0]+self.rotation(-90, self.robot.direction)[0]+self.robot.largeur/2, milieu[1]+self.rotation(-90, self.robot.direction)[1]+self.robot.largeur/2)
-        if(a[0]<0 or b[0]<0 or c[0]<0 or d[0]<0 or a[1]<0 or b[1]<0 or c[1]<0 or d[1]<0 or a[0]>self.taille or b[0]>self.taille or c[0]>self.taille or d[0]>self.taille or a[1]>self.taille or b[1]>self.taille or c[1]>self.taille or d[1]>self.taille):
-            return False
-        else :
-            return True"""
         
     def get_distance(self):
         x=self.robot.ptv[0]
@@ -81,14 +64,6 @@ class Arene:
 
         return 8190
 
-    """def rotation(self,angle, v):
-        #angle positif = sens des aiguille d'une montre et angle negatif = sens inverse
-        vx, vy=v[0], v[1]
-        vtemp = 0.0
-        vtemp = round(v[0] * math.cos(math.radians(angle)) - vy * math.sin(math.radians(angle)))
-        vy = round(- v[0] * math.sin(math.radians(angle)) + vy * math.cos(math.radians(angle)))
-        return (vtemp, vy)"""
-    
 
 
 
