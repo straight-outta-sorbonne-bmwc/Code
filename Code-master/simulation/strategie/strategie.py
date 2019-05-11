@@ -1,18 +1,4 @@
-# from robot import Robot
-# from arene import Arene
-# from affichage import AffichageTK
-# from controleur import Controleur
 
-# robot = Robot()
-# arene = Arene(robot)
-# controleur = Controleur(robot)ls
-
-# visu = AffichageTK(robot)
-
-# def run(controleur):
-# 	while not controleur.stop():
-# 		controleur.update()
-# 		time.sleep(DT)
 import math 
 
 
@@ -37,7 +23,6 @@ class strategie_avance:
 
 		l,r=self.robot.get_motor_position()
 		res = (l*(self.robot.WHEEL_CIRCUMFERENCE/360) >= self.distance) or (self.robot.get_distance()<=5 )
-	
 		if res:
 			self.robot.set_motor_dps(self.robot.MOTOR_LEFT+self.robot.MOTOR_RIGHT,0)
 		return res
@@ -125,5 +110,5 @@ class strategie_carre:
 			self.liste[self.nb_tour%2].update()
 
 	def stop(self):
-		return self.nb_tour>=7 
+		return self.nb_tour>=8
 		

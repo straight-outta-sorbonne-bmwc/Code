@@ -52,25 +52,29 @@ class Arene:
 
 
         
-
-    def get_distance(self):
     
+    def get_distance(self):
+                                                                                                                                                                
         for i in range (5, 8000):
             for j in self.obstacles:
-                if ((abs(self.robot.a[0]+self.robot.dir[0]*(-i) - j.x) <= j.taille/2) and (abs(self.robot.a[1]+self.robot.dir[1]*i -j.y) <= j.taille/2 )) or ((abs(self.robot.a[0]+self.robot.dir[0]*(-i) - j.x) >= self.taille) or (abs(self.robot.a[1]+self.robot.dir[1]*i -j.y) >= self.taille)) or ((abs(self.robot.a[0]+self.robot.dir[0]*(-i) - j.x) <= 0) or (abs(self.robot.a[1]+self.robot.dir[1]*i -j.y) <= 0)): 
-                    return i
-                if ((abs(self.robot.b[0]+self.robot.dir[0]*i - j.x) <= j.taille/2) and (abs(self.robot.b[1]+self.robot.dir[1]*i -j.y) <= j.taille/2 )): 
-                    return i
-                if ((abs(self.robot.c[0]+self.robot.dir[0]*i - j.x) <= j.taille/2) and (abs(self.robot.c[1]+self.robot.dir[1]*i -j.y) <= j.taille/2 )): 
-                    return i
-                if ((abs(self.robot.d[0]+self.robot.dir[0]*(-i) - j.x) <= j.taille/2) and (abs(self.robot.d[1]+self.robot.dir[1]*i -j.y) <= j.taille/2 )): y
-                    return i
-            if x+self.robot.dir[0]*i >= self.taille  or y+self.robot.dir[1] >= self.taille :
-                return i
+                a=[self.robot.a[0]+self.robot.dir[0]*(-i) , self.robot.a[1]+self.robot.dir[1]*(-i) ]
+                b=[self.robot.b[0]+self.robot.dir[0]*i ,self.robot.b[1]+self.robot.dir[1]*i ]
+                c=[self.robot.c[0]+self.robot.dir[0]*i , self.robot.c[1]+self.robot.dir[1]*i ]
+                d=[self.robot.d[0]+self.robot.dir[0]*(-i), self.robot.d[1]+self.robot.dir[1]*(-i)]
 
+                if ((abs(a[0]- j.x)<= j.taille/2) and ( abs(a[1]-j.y)<= j.taille/2 )) or ((a[0] >= self.taille) or (a[1] >= self.taille)) or ((a[0] <= 0) or (a[1] <= 0)): 
+                
+                    return i
+                if ((abs(b[0]- j.x)<= j.taille/2) and ( abs(b[1]-j.y)<= j.taille/2 )) or ((b[0] >= self.taille) or (b[1] >= self.taille)) or ((b[0] <= 0) or (a[1] <= 0)): 
+                  
+                    return i
+                if ((abs(c[0]- j.x)<= j.taille/2) and ( abs(c[1]-j.y)<= j.taille/2 )) or ((c[0] >= self.taille) or (c[1] >= self.taille)) or ((c[0] <= 0) or (a[1] <= 0)): 
+                
+                    return i
+                if ((abs(d[0]- j.x)<= j.taille/2) and ( abs(d[1]-j.y)<= j.taille/2 )) or ((d[0] >= self.taille) or (d[1] >= self.taille)) or ((d[0] <= 0) or (a[1] <= 0)): 
+                    
+                    return i
         return 8190
-
-
 
     def update(self):
 
