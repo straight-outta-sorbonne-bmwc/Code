@@ -42,7 +42,7 @@ class Arene:
             self.obstacles.append(obstacle.Obstacle(u, v))
            
 
-    def add_obstacle(self, x, y):
+    def add_obstacle(self, x, y): #ajoute un obstacle à la position x,y
         if(x<0 or x>self.taille-1):
             print("Erreur sur la valeur de x")
         elif(y<0 or y>self.taille-1):
@@ -53,7 +53,7 @@ class Arene:
 
         
     
-    def get_distance(self):
+    def get_distance(self):#return la distance du robot à l'obstacle 
                                                                                                                                                                 
         for i in range (5, 8000):
             for j in self.obstacles:
@@ -76,7 +76,7 @@ class Arene:
                     return i
         return 8190
 
-    def update(self):
+    def update(self): #update pour le monde simulé permettant de mettre à la position du robot dans l'aréne
 
         dt=time.time()-self.lasttime
         

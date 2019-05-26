@@ -11,7 +11,7 @@ class AffichageTK(object):
         self.dim=arene.taille
         self.l,self.r = None,None
     
-    def affiche_obstacle(self):
+    def affiche_obstacle(self): #affichage graphique des obstacles
         for i in self.arene.obstacles:
             self.can.create_rectangle(i.x, i.y, i.x+i.taille, i.y+i.taille,fill='#000fff000')
 
@@ -29,18 +29,18 @@ class AffichageTK(object):
 
         self.root.mainloop()
         
-    def updateA(self):
+    def updateA(self): #fonction qui se rappelle elle même permettant de rafraichir la fenêtre graphique
         self.deleterobot()
         self.affiche_robot()
         self.root.after(5,self.updateA)
 
 
-    def deleteMe(self):
+    def deleteMe(self): 
         self.arene.stop = True
         time.sleep(1)
         self.root.destroy()
     
-    def affiche_robot(self):
+    def affiche_robot(self): #affichage graphique du robot
         
         self.r=self.can.create_polygon(self.arene.robot.a[0],self.arene.robot.a[1],self.arene.robot.b[0],self.arene.robot.b[1],self.arene.robot.c[0],self.arene.robot.c[1],self.arene.robot.d[0],self.arene.robot.d[1],fill="black")
         self.l=self.can.create_line(self.arene.robot.x, self.arene.robot.y, self.arene.robot.ptv[0] , self.arene.robot.ptv[1], arrow='last', fill='red')
@@ -50,7 +50,7 @@ class AffichageTK(object):
            
         self.can.update()
         
-    def deleterobot(self):
+    def deleterobot(self): #supprime le robot
         if self.l:
             self.can.delete(self.l)
         if self.r: 

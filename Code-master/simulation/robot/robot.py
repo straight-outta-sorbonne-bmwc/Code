@@ -13,8 +13,10 @@ class Robot:
     WHEEL_CIRCUMFERENCE = WHEEL_DIAMETER * math.pi # perimetre de la roue (mm)
     
     def __init__(self,x,y,longueur,largeur):
+        #position du robot------------------------------------------------------------#
         self.x=x
         self.y=y
+        #-----------------------------------------------------------------------------#
         self.longueur=longueur
         self.largeur=largeur
         self.dt=time.time()
@@ -27,33 +29,17 @@ class Robot:
         self.offset_gauche=0
         self.offset_droit=0
         self.rotate_choix=0
+        #les 4 point du carré -------------------------------------------------------#
         self.a=[self.x-(self.longueur/2),self.y+(self.largeur/2)]
         self.b=[self.x+(self.longueur/2),self.y+(self.largeur/2)]
         self.c=[self.x+(self.longueur/2),self.y-(self.largeur/2)]
         self.d=[self.x-(self.longueur/2),self.y-(self.largeur/2)]
-        self.ptv=[(self.b[0]+self.c[0])/2, (self.b[1]+self.c[1])/2]
-        self.dir=calcul.normalize([self.ptv[0]-self.x, self.ptv[1]-self.y])
+        self.ptv=[(self.b[0]+self.c[0])/2, (self.b[1]+self.c[1])/2] # permet juste d'afficher la fleche au bon endroit
+        self.dir=calcul.normalize([self.ptv[0]-self.x, self.ptv[1]-self.y]) # vecteur direction du robot
+        #----------------------------------------------------------------------------#
         self.arene=None
-    '''
-    @property
-    def a(self):
-        v=calcul.calculvecteur([self.x,self.y], self.ptv)
-        #return [self.x-(self.longueur/2),self.y+(self.largeur/2)]
-        return rotatePoint([self.x-(self.longueur/2),self.y+(self.largeur/2)], (self.x, self.y), angle2vect(self.ddepart, v))
-    @property
-    def b(self): #roue droite
-        #return [self.x+(self.longueur/2),self.y+(self.largeur/2)]
-        return rotatePoint([self.x+(self.longueur/2),self.y+(self.largeur/2)], (self.x, self.y), angle2vect(self.ddepart, v))
-    @property
-    def c(self): #roue gauche
-        #return [self.x+(self.longueur/2),self.y-(self.largeur/2)]
-        return rotatePoint([self.x+(self.longueur/2),self.y-(self.largeur/2)], (self.x, self.y), angle2vect(self.ddepart, v))
-    @property
-    def d(self):
-        #return [self.x-(self.longueur/2),self.y-(self.largeur/2)]
-        return rotatePoint([self.x-(self.longueur/2),self.y-(self.largeur/2)], (self.x, self.y), angle2vect(self.ddepart, v))
-    '''
-    def rotationDroite(self,angle):
+   
+    def rotationDroite(self,angle): #permet au robot de faire une rototaion d'un angle donné par rapport à la roue droite en calculant la future position des points
         x,y = calcul.rotatePoint((self.x,self.y), self.b, angle*(-1))
         self.x=x
         self.y=y
@@ -63,7 +49,8 @@ class Robot:
         self.ptv=[(self.b[0]+self.c[0])/2, (self.b[1]+self.c[1])/2]
         self.dir=calcul.normalize([self.ptv[0]-self.x, self.ptv[1]-self.y])
 
-    def rotationGauche(self,angle):
+    def rotationGauche(self,angle): #permet au robot de faire une rotation d'un angle donné par rapport à la roue gauche en calculant la future position des points
+        x,y = calcul.rotatePoint((self.x,self.y), self.c, angle)
         self.x=x
         self.y=y
         self.a=calcul.rotatePoint(self.a, self.c, angle*(1))
@@ -74,7 +61,7 @@ class Robot:
 
         
  
-    def set_motor_dps(self, port, dps):
+    def set_motor_dps(self, port, dps): #permet de definir la vitesse des moteurs
         if (port==self.MOTOR_LEFT):
             self.motor_dps_gauche=dps
         elif (port==self.MOTOR_RIGHT):
@@ -84,11 +71,11 @@ class Robot:
             self.motor_dps_gauche=dps
 
     
-    def get_motor_position(self):
+    def get_motor_position(self): #Lit les etats des moteurs en degre.
         return [self.motor_pos_gauche, self.motor_pos_droit]
 
 
-    def offset_motor_encoder(self, port, offset):
+    def offset_motor_encoder(self, port, offset): # Fixe l'offset des moteurs
         if port==self.MOTOR_LEFT:
             self.offset_gauche+=offset 
             self.motor_pos_gauche=0
@@ -101,7 +88,7 @@ class Robot:
             self.motor_pos_droit=0
             self.motor_pos_gauche=0
             
-    def get_distance(self):
+    def get_distance(self): #simule le capteur du robot 
         return self.arene.get_distance()
 
 
