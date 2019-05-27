@@ -2,7 +2,7 @@ import math
 
 
 
-def rotatePoint(M, O, angle) :
+def rotatePoint(M, O, angle) :#calcul les coordonnées du point M aprés une rotation de angle par rapport au point O 
     angle*=math.pi / 180
     xM = M[0] - O[0]
     yM = M[1] - O[1]
