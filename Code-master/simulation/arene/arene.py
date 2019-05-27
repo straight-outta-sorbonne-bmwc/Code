@@ -76,7 +76,7 @@ class Arene:
                     return i
         return 8190
 
-    def update(self): #update pour le monde simulé permettant de mettre à la position du robot dans l'aréne
+    def update(self): #update pour le monde simulé permettant de mettre à jour la position du robot dans l'aréne
 
         dt=time.time()-self.lasttime
         
